@@ -19,15 +19,48 @@
     <LinearLayout android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-   
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/laccount"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp">
         <EditText
-            android:id="@+id/campo_texto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:hint="Texto de entrada" />
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:inputType="number"
+            android:id="@+id/editA"
+            android:ems="10"
+            android:hint="Número de cuenta"/>
 
+    </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/lamount"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp">
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:inputType="numberDecimal"
+                android:id="@+id/editAm"
+                android:ems="10"
+                android:hint="Monto"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/ldescription"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp">
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/editD"
+                android:ems="10"
+                android:hint="Descripción"
+                android:maxLength="10"/>
+
+        </android.support.design.widget.TextInputLayout>
 
 
     </LinearLayout>
