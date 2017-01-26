@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AppService</string>
+    <string name="err_empty_account">Campo vacío, Introduce cuenta</string>
+    <string name="err_empty_amount">Campo vacío, Introduce monto</string>
+    <string name="err_empty_description">Campo vacío, Introduce descripción</string>
+    <string name="err_cap">Campos mal llenados</string>
 </resources>
