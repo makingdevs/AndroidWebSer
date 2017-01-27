@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             String account = mEditaccount.getText().toString()
             if(account.equals("")){println "no debe ser vacío"}
             else{println account}
-            Toast.makeText (this ,"Mensaje de prueba", 1).show();
+            Toast.makeText (this ,"Mensaje de prueba", 0).show();
 
         }
 
