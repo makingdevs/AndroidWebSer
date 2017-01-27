@@ -76,6 +76,7 @@
                 android:maxLength="100"
                 android:theme="@style/CampoTextoAzul"
                 android:drawableRight="@drawable/user"
+                android:singleLine="true"
                 />
 
         </android.support.design.widget.TextInputLayout>
@@ -119,6 +120,7 @@
             fancy:fb_radius="30dp"
             fancy:fb_text="Depositar"
             fancy:fb_textColor="#000000"
+
             />
 
 
