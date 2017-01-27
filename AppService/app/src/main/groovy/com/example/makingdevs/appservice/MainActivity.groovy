@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import groovy.transform.CompileStatic
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
             String account = mEditaccount.getText().toString()
             if(account.equals("")){println "no debe ser vacío"}
             else{println account}
+            Toast.makeText (this ,"Mensaje de prueba", 1).show();
 
         }
 
