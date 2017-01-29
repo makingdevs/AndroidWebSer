@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         mFancyC.setGhost(true)
         mFancyB.onClickListener={
 
-           /* if(mEditaccount.getText()=="6"){
+           if(mEditaccount.getText().toString().equals("6")){
                 println "no deje vaio"
                 Toast.makeText (this ,"No dejé Campos vacíos ", 0).show()
             }
@@ -54,12 +54,14 @@ public class MainActivity extends AppCompatActivity {
 
 
                 println "${amount}  ${Description} ${NumberAccount}"
-            }*/
-            if(mEditaccount.equals("")){ println "Vacioss"
+            }
+           /* if(mEditaccount.equals("")){ println "Vacioss"
                 Toast.makeText (this ,"No dejé Campos vacíos ", 0).show()}
             String account = mEditaccount.getText().toString()
             if(account.equals("")){println "no debe ser vacío"}
-            else{println account}
+            else{println account}*/
+
+            if(mEditamount.getText().toString()==""){println "no deje vacio"}
 
 
 
