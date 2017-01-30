@@ -7,6 +7,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import com.example.makingdevs.common.Fluent
+import groovy.json.JsonSlurper
 import groovy.transform.CompileStatic
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     String NumberAccount
     String Description
     float amount
+    Button mPrueba
 
 
 
@@ -38,22 +41,25 @@ public class MainActivity extends AppCompatActivity {
         mEditdescription = (EditText) findViewById(R.id.editD)
         mFancyB = (FancyButton) findViewById(R.id.btn_preview)
         mFancyC = (FancyButton) findViewById(R.id.btn_clear)
+        mPrueba =  (Button) findViewById(R.id.prueba)
 
         mFancyB.setGhost(true)
         mFancyC.setGhost(true)
         mFancyB.onClickListener={
 
-           if(mEditaccount.getText().toString().equals("6")){
+           if(mEditaccount.getText().toString().equals("") || mEditamount.getText().toString().equals("") || mEditdescription.getText().toString().equals("") ){
                 println "no deje vaio"
                 Toast.makeText (this ,"No dejé Campos vacíos ", 0).show()
             }
             else{
-                println "hola"
+
                 NumberAccount = mEditaccount.getText()
                 Description = mEditdescription.getText()
+                amount = mEditamount.getText().toFloat()
+                println "Número de cuenta: ${NumberAccount} Monto: ${amount} Descripcion: ${Description}"
 
 
-                println "${amount}  ${Description} ${NumberAccount}"
+
             }
            /* if(mEditaccount.equals("")){ println "Vacioss"
                 Toast.makeText (this ,"No dejé Campos vacíos ", 0).show()}
@@ -61,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             if(account.equals("")){println "no debe ser vacío"}
             else{println account}*/
 
-            if(mEditamount.getText().toString()==""){println "no deje vacio"}
+
 
 
 
@@ -73,6 +79,16 @@ public class MainActivity extends AppCompatActivity {
             mEditamount.setText("")
         }
 
+        mPrueba.onClickListener = {
+            Fluent.async {
+                def jsonSlurper = new JsonSlurper()
+                def httpConnection = new URL("http://emailerv2.modulusuno.com/countTotal")
+                jsonSlurper.parseText(httpConnection.text)
+            } then { result ->
+                println result.properties
+                println result['count']
+            }
+        }
 
 
 
