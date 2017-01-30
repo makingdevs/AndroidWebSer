@@ -2,17 +2,16 @@ package com.example.makingdevs.appservice;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle
-import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.Toast
 import com.example.makingdevs.common.Fluent
 import groovy.json.JsonSlurper
 import groovy.transform.CompileStatic
 import mehdi.sakout.fancybuttons.FancyButton;
+import java.net.URLConnection
 
-@CompileStatic
+
 public class MainActivity extends AppCompatActivity {
     EditText mEditamount
     EditText mEditaccount
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         def template = """\
 <Abono>
 <Clave>1101</Clave>
-<FechaOperacion>${fecha.getDateString()}</FechaOperacion>
+<FechaOperacion>${fecha.format("yyyyMMdd")}</FechaOperacion>
 <InstitucionOrdenante clave="846"/>
 <InstitucionBeneficiaria clave="90646"/>
 <ClaveRastreo>GEM801</ClaveRastreo>
@@ -43,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
 <ReferenciaNumerica>27122016</ReferenciaNumerica>
 <Empresa>STP</Empresa>
 </Abono>
-
 """
         return template
     }
@@ -99,16 +97,31 @@ public class MainActivity extends AppCompatActivity {
             mEditamount.setText("")
 
         }
-
+        String xml = generator(NumberAccount, amount.toString(), Description);
         mPrueba.onClickListener = {
             Fluent.async {
                 def jsonSlurper = new JsonSlurper()
-                def httpConnection = new URL("http://impulsomx-api-qa.modulusuno.com/STP/stpDepositNotification")
-                jsonSlurper.parseText(httpConnection.text)
-                httpConnection
+                URLConnection connection = new URL("http://impulsomx-api-qa.modulusuno.com/STP/stpDepositNotification").openConnection()
+
+                connection.requestMethod = 'POST'
+
+                connection.doOutput = true
+                def writer = new OutputStreamWriter(connection.outputStream)
+                writer.write("notification=${xml}")
+                writer.flush()
+                writer.close()
+                connection.connect()
+                println connection
+                def response = connection.content.text
+                println response
+
+                jsonSlurper.parseText(response)
+
             } then { result ->
+
                 println result.properties
-                println result['error']
+                //println result['message']
+
             }
 
             println generator(NumberAccount, amount.toString(), Description)
