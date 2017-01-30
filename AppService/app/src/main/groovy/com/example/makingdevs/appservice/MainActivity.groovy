@@ -25,10 +25,12 @@ public class MainActivity extends AppCompatActivity {
     Button mPrueba
 
     String generator(String NumberAccount, String amount, String Description){
+        Date fecha = new Date();
+        System.out.println(fecha.getDateString());
         def template = """\
 <Abono>
 <Clave>1101</Clave>
-<FechaOperacion>20100323</FechaOperacion>
+<FechaOperacion>${fecha.getDateString()}</FechaOperacion>
 <InstitucionOrdenante clave="846"/>
 <InstitucionBeneficiaria clave="90646"/>
 <ClaveRastreo>GEM801</ClaveRastreo>
@@ -95,16 +97,18 @@ public class MainActivity extends AppCompatActivity {
             mEditaccount.setText("")
             mEditdescription.setText("")
             mEditamount.setText("")
+
         }
 
         mPrueba.onClickListener = {
             Fluent.async {
                 def jsonSlurper = new JsonSlurper()
-                def httpConnection = new URL("http://emailerv2.modulusuno.com/countTotal")
+                def httpConnection = new URL("http://impulsomx-api-qa.modulusuno.com/STP/stpDepositNotification")
                 jsonSlurper.parseText(httpConnection.text)
+                httpConnection
             } then { result ->
                 println result.properties
-                println result['count']
+                println result['error']
             }
 
             println generator(NumberAccount, amount.toString(), Description)
