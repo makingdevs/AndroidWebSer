@@ -24,9 +24,27 @@ public class MainActivity extends AppCompatActivity {
     float amount
     Button mPrueba
 
+    String generator(String NumberAccount, String amount, String Description){
+        def template = """\
+<Abono>
+<Clave>1101</Clave>
+<FechaOperacion>20100323</FechaOperacion>
+<InstitucionOrdenante clave="846"/>
+<InstitucionBeneficiaria clave="90646"/>
+<ClaveRastreo>GEM801</ClaveRastreo>
+<Monto>${amount}</Monto>
+<NombreBeneficiario>Techminds</NombreBeneficiario>
+<TipoCuentaBeneficiario clave="40"/>
+<CuentaBeneficiario>${NumberAccount}</CuentaBeneficiario>
+<RfcCurpBeneficiario>RFC121212ABC</RfcCurpBeneficiario>
+<ConceptoPago>${Description}</ConceptoPago>
+<ReferenciaNumerica>27122016</ReferenciaNumerica>
+<Empresa>STP</Empresa>
+</Abono>
 
-
-
+"""
+        return template
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
                 println result.properties
                 println result['count']
             }
+
+            println generator(NumberAccount, amount.toString(), Description)
         }
 
 
