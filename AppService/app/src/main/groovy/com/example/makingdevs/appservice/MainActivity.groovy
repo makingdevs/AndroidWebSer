@@ -1,8 +1,10 @@
-package com.example.makingdevs.appservice;
+package com.example.makingdevs.appservice
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle
-import android.widget.Button
+import android.text.InputType
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import com.example.makingdevs.common.Fluent
@@ -11,7 +13,7 @@ import groovy.transform.CompileStatic
 import groovy.transform.TypeChecked
 import groovy.transform.TypeCheckingMode
 import mehdi.sakout.fancybuttons.FancyButton;
-import java.net.URLConnection
+
 
 @CompileStatic
 public class MainActivity extends AppCompatActivity {
@@ -93,12 +95,16 @@ public class MainActivity extends AppCompatActivity {
 
         mFancyB.setGhost(true)
         mFancyC.setGhost(true)
+        // mEditdescription.setInputType(android.text.InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
         mFancyB.onClickListener={
 
            if(mEditaccount.getText().toString().equals("") || mEditamount.getText().toString().equals("") || mEditdescription.getText().toString().equals("") ){
                 println "no deje vaio"
                 Toast.makeText (this ,"No dejé Campos vacíos ", 0).show()
             }
+           else if(mEditaccount.getText().length()!=18){
+               Toast.makeText (this ,"Capture 18 Digitos en Cuenta ", 0).show()
+           }
             else{
 
                 NumberAccount = mEditaccount.getText()
