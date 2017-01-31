@@ -79,6 +79,16 @@
                 android:drawableRight="@drawable/user"
                 android:singleLine="true"
                 />
+            <TextView
+                android:id="@+id/texto_contador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/campo_mensaje"
+                android:layout_alignRight="@+id/campo_mensaje"
+                android:layout_below="@+id/campo_mensaje"
+                android:text=" "
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_gravity="right"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -123,6 +133,7 @@
             fancy:fb_textColor="#000000"
 
             />
+
 
 
     </LinearLayout>

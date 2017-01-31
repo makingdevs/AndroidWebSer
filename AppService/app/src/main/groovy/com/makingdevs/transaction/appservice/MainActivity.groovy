@@ -3,7 +3,10 @@ package com.makingdevs.transaction.appservice
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.makingdevs.transaction.common.Fluent
 import groovy.json.JsonSlurper
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     String NumberAccount
     String Description
     float amount
+    TextView contador
 
     String generator(String NumberAccount, String amount, String Description){
         Date fecha = new Date();
@@ -94,10 +98,29 @@ public class MainActivity extends AppCompatActivity {
         mEditdescription = (EditText) findViewById(R.id.editD)
         mFancyB = (FancyButton) findViewById(R.id.btn_preview)
         mFancyC = (FancyButton) findViewById(R.id.btn_clear)
-
         mFancyB.setGhost(true)
         mFancyC.setGhost(true)
+        contador = (TextView) findViewById(R.id.texto_contador);
         // mEditdescription.setInputType(android.text.InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
+        mEditdescription.addTextChangedListener(new TextWatcher() {
+            @Override
+            void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            void afterTextChanged(Editable s) {
+
+                String tamanoString = String.valueOf(s.length()); //255 como maximo
+                contador.setText(tamanoString);
+
+            }
+        })
         mFancyB.onClickListener={
 
            if(mEditaccount.getText().toString().equals("") || mEditamount.getText().toString().equals("") || mEditdescription.getText().toString().equals("") ){
