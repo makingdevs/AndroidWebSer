@@ -1,10 +1,8 @@
 package com.example.makingdevs.appservice
 
-import android.content.Context;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle
-import android.text.InputType
-import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import com.example.makingdevs.common.Fluent
@@ -56,9 +54,7 @@ public class MainActivity extends AppCompatActivity {
         Fluent.async {
             def jsonSlurper = new JsonSlurper()
             URLConnection connection = new URL("http://impulsomx-api-qa.modulusuno.com/STP/stpDepositNotification").openConnection()
-
             connection.requestMethod = 'POST'
-
             connection.doOutput = true
             def writer = new OutputStreamWriter(connection.outputStream)
             writer.write("notification=${xml}")
@@ -103,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText (this ,"No dejé Campos vacíos ", 0).show()
             }
            else if(mEditaccount.getText().length()!=18){
-               Toast.makeText (this ,"Capture 18 Digitos en Cuenta ", 0).show()
+               Toast.makeText (this ,"Ingrese 18 Digitos en Cuenta ", 0).show()
            }
             else{
 
