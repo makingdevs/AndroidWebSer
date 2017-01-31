@@ -8,10 +8,12 @@ import android.widget.Toast
 import com.example.makingdevs.common.Fluent
 import groovy.json.JsonSlurper
 import groovy.transform.CompileStatic
+import groovy.transform.TypeChecked
+import groovy.transform.TypeCheckingMode
 import mehdi.sakout.fancybuttons.FancyButton;
 import java.net.URLConnection
 
-
+@CompileStatic
 public class MainActivity extends AppCompatActivity {
     EditText mEditamount
     EditText mEditaccount
@@ -21,13 +23,12 @@ public class MainActivity extends AppCompatActivity {
     String NumberAccount
     String Description
     float amount
-    Button mPrueba
 
     String generator(String NumberAccount, String amount, String Description){
         Date fecha = new Date();
         System.out.println(fecha.getDateString());
         def template = """\
-<Abono>
+ <Abono>
 <Clave>1101</Clave>
 <FechaOperacion>${fecha.format("yyyyMMdd")}</FechaOperacion>
 <InstitucionOrdenante clave="846"/>
@@ -46,6 +47,36 @@ public class MainActivity extends AppCompatActivity {
         return template
     }
 
+
+    @TypeChecked(TypeCheckingMode.SKIP)
+    void connection(){
+        String xml = generator(NumberAccount, amount.toString(), Description);
+        Fluent.async {
+            def jsonSlurper = new JsonSlurper()
+            URLConnection connection = new URL("http://impulsomx-api-qa.modulusuno.com/STP/stpDepositNotification").openConnection()
+
+            connection.requestMethod = 'POST'
+
+            connection.doOutput = true
+            def writer = new OutputStreamWriter(connection.outputStream)
+            writer.write("notification=${xml}")
+            writer.flush()
+            writer.close()
+            connection.connect()
+            println connection
+            def response = connection.content.text
+            println response
+
+            jsonSlurper.parseText(response)
+
+        } then { result ->
+
+            println result.properties
+            //println result['message']
+
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Ocultar teclado virtual
@@ -59,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
         mEditdescription = (EditText) findViewById(R.id.editD)
         mFancyB = (FancyButton) findViewById(R.id.btn_preview)
         mFancyC = (FancyButton) findViewById(R.id.btn_clear)
-        mPrueba =  (Button) findViewById(R.id.prueba)
 
         mFancyB.setGhost(true)
         mFancyC.setGhost(true)
@@ -75,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
                 Description = mEditdescription.getText()
                 amount = mEditamount.getText().toFloat()
                 println "Número de cuenta: ${NumberAccount} Monto: ${amount} Descripcion: ${Description}"
-
-
+               connection()
+               println generator(NumberAccount, amount.toString(), Description)
 
             }
            /* if(mEditaccount.equals("")){ println "Vacioss"
@@ -97,35 +127,8 @@ public class MainActivity extends AppCompatActivity {
             mEditamount.setText("")
 
         }
-        String xml = generator(NumberAccount, amount.toString(), Description);
-        mPrueba.onClickListener = {
-            Fluent.async {
-                def jsonSlurper = new JsonSlurper()
-                URLConnection connection = new URL("http://impulsomx-api-qa.modulusuno.com/STP/stpDepositNotification").openConnection()
 
-                connection.requestMethod = 'POST'
 
-                connection.doOutput = true
-                def writer = new OutputStreamWriter(connection.outputStream)
-                writer.write("notification=${xml}")
-                writer.flush()
-                writer.close()
-                connection.connect()
-                println connection
-                def response = connection.content.text
-                println response
-
-                jsonSlurper.parseText(response)
-
-            } then { result ->
-
-                println result.properties
-                //println result['message']
-
-            }
-
-            println generator(NumberAccount, amount.toString(), Description)
-        }
 
 
 
