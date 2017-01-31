@@ -1,4 +1,4 @@
-package com.example.makingdevs.appservice;
+package com.makingdevs.transaction.appservice;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

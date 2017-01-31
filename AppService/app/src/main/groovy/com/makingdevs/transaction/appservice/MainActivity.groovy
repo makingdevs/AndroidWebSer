@@ -1,11 +1,11 @@
-package com.example.makingdevs.appservice
+package com.makingdevs.transaction.appservice
 
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.Toast
-import com.example.makingdevs.common.Fluent
+import com.makingdevs.transaction.common.Fluent
 import groovy.json.JsonSlurper
 import groovy.transform.CompileStatic
 import groovy.transform.TypeChecked
@@ -49,29 +49,35 @@ public class MainActivity extends AppCompatActivity {
 
 
     @TypeChecked(TypeCheckingMode.SKIP)
-    void connection(){
-        String xml = generator(NumberAccount, amount.toString(), Description);
-        Fluent.async {
-            def jsonSlurper = new JsonSlurper()
-            URLConnection connection = new URL("http://impulsomx-api-qa.modulusuno.com/STP/stpDepositNotification").openConnection()
-            connection.requestMethod = 'POST'
-            connection.doOutput = true
-            def writer = new OutputStreamWriter(connection.outputStream)
-            writer.write("notification=${xml}")
-            writer.flush()
-            writer.close()
-            connection.connect()
-            println connection
-            def response = connection.content.text
-            println response
+    boolean connection(){
+        try {
+            String xml = generator(NumberAccount, amount.toString(), Description);
+            Fluent.async {
+                def jsonSlurper = new JsonSlurper()
+                URLConnection connection = new URL("http://impulsomx-api-qa.modulusuno.com/STP/stpDepositNotification").openConnection()
+                connection.requestMethod = 'POST'
+                connection.doOutput = true
+                def writer = new OutputStreamWriter(connection.outputStream)
+                writer.write("notification=${xml}")
+                writer.flush()
+                writer.close()
+                connection.connect()
+                println connection
+                def response = connection.content.text
+                println response
 
-            jsonSlurper.parseText(response)
+                jsonSlurper.parseText(response)
 
-        } then { result ->
+            } then { result ->
 
-            println result.properties
-            //println result['message']
+                println result.properties
+                //println result['message']
 
+            }
+            return true;
+        }
+        catch (Exception e) {
+            return false;
         }
     }
 
@@ -107,8 +113,11 @@ public class MainActivity extends AppCompatActivity {
                 Description = mEditdescription.getText()
                 amount = mEditamount.getText().toFloat()
                 println "Número de cuenta: ${NumberAccount} Monto: ${amount} Descripcion: ${Description}"
-               connection()
+               if(connection()){Toast.makeText (this ,"Transacción exitosa ", 0).show() }
+               else{Toast.makeText (this ,"Paso algo inesperado", 0).show()}
                println generator(NumberAccount, amount.toString(), Description)
+               Toast.makeText (this ,"", 0).show()
+
 
             }
            /* if(mEditaccount.equals("")){ println "Vacioss"
