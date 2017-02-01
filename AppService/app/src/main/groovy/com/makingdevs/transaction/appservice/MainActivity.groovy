@@ -117,7 +117,8 @@ public class MainActivity extends AppCompatActivity {
             void afterTextChanged(Editable s) {
 
                 String tamanoString = String.valueOf(s.length()); //255 como maximo
-                contador.setText(tamanoString);
+                Integer a = 255 - tamanoString.toInteger()
+                contador.setText(a.toString());
 
             }
         })
