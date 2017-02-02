@@ -71,7 +71,7 @@
         android:gravity="center"
         android:layout_weight="0.3"
         android:layout_below="@+id/linaer1"
-        android:layout_margin="30dp">
+        android:layout_marginTop="10dp">
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btn_edit"
             android:layout_width="wrap_content"
@@ -117,7 +117,7 @@
         android:gravity="center"
         android:layout_weight="0.3"
         android:layout_below="@+id/linea3"
-        android:layout_margin="0dp"
+        android:layout_margin="20dp"
         >
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btn_deposit"

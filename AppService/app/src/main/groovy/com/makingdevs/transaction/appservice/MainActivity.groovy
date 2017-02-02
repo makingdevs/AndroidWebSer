@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_deposit);
         mEditaccount = (EditText) findViewById(R.id.editA)
         mEditamount = (EditText) findViewById(R.id.editAm)
         mEditdescription = (EditText) findViewById(R.id.editD)

@@ -4,4 +4,8 @@
     <string name="err_empty_amount">Campo vacío, Introduce monto</string>
     <string name="err_empty_description">Campo vacío, Introduce descripción</string>
     <string name="err_cap">Campos mal llenados</string>
+    <string-array name="spinner_method">
+        <item>QA</item>
+        <item>Stage</item>
+    </string-array>
 </resources>
