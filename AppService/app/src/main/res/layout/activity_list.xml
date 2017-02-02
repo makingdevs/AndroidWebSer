@@ -30,15 +30,7 @@
         fab:fab_addButtonColorNormal="#042848"
 
         >
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fb_delete_user"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            fab:fab_colorNormal="#042848"
-            app:fabSize="mini"
-            app:fab_icon="@drawable/ic_delete"
 
-            />
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fb_new_user"
             android:layout_width="wrap_content"
@@ -46,15 +38,6 @@
             fab:fab_colorNormal="#042848"
             app:fabSize="mini"
             app:fab_icon="@drawable/ic_person"
-
-            />
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fb_edit_user"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            fab:fab_colorNormal="#042848"
-            app:fabSize="mini"
-            app:fab_icon="@drawable/ic_edit"
 
             />
 

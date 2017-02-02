@@ -1,37 +1,46 @@
 package com.makingdevs.transaction.appservice
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.app.AlertDialog
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageView
-import com.getbase.floatingactionbutton.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity
+import com.getbase.floatingactionbutton.FloatingActionButton
+import groovy.transform.CompileStatic
 
-public class ListActivity extends AppCompatActivity {
+@CompileStatic
+class ListActivity extends AppCompatActivity {
 
-    FloatingActionButton fB_delete
+
     FloatingActionButton fB_new
-    FloatingActionButton fB_edit
     FloatingActionButton fB_deposit
+
+    void alert(){
+        AlertDialog alert = new AlertDialog.Builder(this).create()
+        alert.setTitle("Estás Seguro")
+        alert.setMessage("Realmente desea borrar")
+        alert.setButton("Si") { DialogInterface dialog, int which ->
+            // TODO: Confirmar el borrado
+        } as DialogInterface.OnClickListener
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         fB_deposit = (FloatingActionButton) findViewById(R.id.fb_deposit_user)
         fB_new = (FloatingActionButton) findViewById(R.id.fb_new_user)
-        fB_edit = (FloatingActionButton) findViewById(R.id.fb_edit_user)
 
-        fB_deposit.onClickListener ={
-            Intent Acdeposti = new Intent(this,MainActivity.class)
-            startActivity(Acdeposti)
+        fB_deposit.onClickListener = {
+            Intent activityForDeposit = new Intent(this,MainActivity.class)
+            startActivity(activityForDeposit)
         }
         fB_new.onClickListener = {
-            Intent AcUser = new Intent(this,UserActivity.class)
-            startActivity(AcUser)
+            Intent activityForUser = new Intent(this,UserActivity.class)
+            startActivity(activityForUser)
         }
-        fB_edit.onClickListener = {
-            Intent AcEdit = new Intent(this,UserActivity.class)
-            startActivity(AcEdit)
-        }
+
 
 
     }

@@ -30,6 +30,8 @@
             android:text="Ceunta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtNameAccount" />
+            android:id="@+id/txtNameAccount"
+            android:textColor="@color/colorAccent"
+            android:textSize="24dp"/>
     </LinearLayout>
 </LinearLayout>

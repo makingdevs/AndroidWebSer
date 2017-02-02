@@ -1,8 +1,9 @@
 package com.makingdevs.transaction.appservice;
 
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
+import android.os.Bundle
+import groovy.transform.CompileStatic;
+@CompileStatic
 public class EditUserActivity extends AppCompatActivity {
 
     @Override
