@@ -16,9 +16,9 @@ import android.widget.BaseAdapter
 public class AdapterDatos extends BaseAdapter {
     protected Activity activity
 
-    protected ArrayList<person> items
+    protected ArrayList<account> items
 
-    public AdapterDatos(Activity activity, ArrayList<person> items){
+    public AdapterDatos(Activity activity, ArrayList<account> items){
         this.activity = activity
         this.items = items
     }

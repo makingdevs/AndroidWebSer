@@ -6,7 +6,7 @@ import android.graphics.drawable.Drawable;
  * Created by makingdevs on 01/02/17.
  */
 
-public class person {
+public class account {
     long id
     Drawable photo;
     String Name;
@@ -14,7 +14,7 @@ public class person {
 
 
 
-    void datos(Drawable photo, String name, String account){
+    public acoount(Drawable photo, String name, String account){
 
         this.photo = photo
         this.Name = name
