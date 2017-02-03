@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import com.makingdevs.transaction.common.Fluent
@@ -17,7 +18,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 
 @CompileStatic
-public class MainActivity extends AppCompatActivity {
+public class DepositActivity extends AppCompatActivity {
     EditText mEditamount
     EditText mEditaccount
     EditText mEditdescription
@@ -27,12 +28,13 @@ public class MainActivity extends AppCompatActivity {
     String Description
     float amount
     TextView contador
+    Spinner SMethod
 
     String generator(String NumberAccount, String amount, String Description){
         Date fecha = new Date();
         System.out.println(fecha.getDateString());
         def template = """\
- <Abono>
+<Abono>
 <Clave>1101</Clave>
 <FechaOperacion>${fecha.format("yyyyMMdd")}</FechaOperacion>
 <InstitucionOrdenante clave="846"/>
@@ -53,12 +55,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     @TypeChecked(TypeCheckingMode.SKIP)
-    boolean connection(){
+    boolean connection(String Method){
         try {
             String xml = generator(NumberAccount, amount.toString(), Description);
             Fluent.async {
                 def jsonSlurper = new JsonSlurper()
-                URLConnection connection = new URL("http://impulsomx-api-qa.modulusuno.com/STP/stpDepositNotification").openConnection()
+                URLConnection connection
+                connection = new URL("http://impulsomx-api-${Method}.modulusuno.com/STP/stpDepositNotification").openConnection()
                 connection.requestMethod = 'POST'
                 connection.doOutput = true
                 def writer = new OutputStreamWriter(connection.outputStream)
@@ -88,9 +91,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Ocultar teclado virtual
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deposit);
         mEditaccount = (EditText) findViewById(R.id.editA)
@@ -98,10 +98,10 @@ public class MainActivity extends AppCompatActivity {
         mEditdescription = (EditText) findViewById(R.id.editD)
         mFancyB = (FancyButton) findViewById(R.id.btn_preview)
         mFancyC = (FancyButton) findViewById(R.id.btn_clear)
-        mFancyB.setGhost(true)
-        mFancyC.setGhost(true)
+        SMethod = (Spinner) findViewById(R.id.spinner_method)
         contador = (TextView) findViewById(R.id.texto_contador);
-        // mEditdescription.setInputType(android.text.InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
+
+
         mEditdescription.addTextChangedListener(new TextWatcher() {
             @Override
             void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -137,7 +137,8 @@ public class MainActivity extends AppCompatActivity {
                 Description = mEditdescription.getText()
                 amount = mEditamount.getText().toFloat()
                 println "Número de cuenta: ${NumberAccount} Monto: ${amount} Descripcion: ${Description}"
-               if(connection()){Toast.makeText (this ,"Transacción exitosa ", 0).show() }
+               String Method = SMethod.getSelectedItem().toString()
+               if(connection(Method)){Toast.makeText (this ,"Transacción exitosa ", 0).show() }
                else{Toast.makeText (this ,"Paso algo inesperado", 0).show()}
                println generator(NumberAccount, amount.toString(), Description)
                Toast.makeText (this ,"", 0).show()
@@ -160,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
             mEditaccount.setText("")
             mEditdescription.setText("")
             mEditamount.setText("")
+            println SMethod.getSelectedItem().toString()
 
         }
 

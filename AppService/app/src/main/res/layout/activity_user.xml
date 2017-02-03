@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColorHint="#042848"
-                android:inputType="number"
+                android:inputType="text"
                 android:id="@+id/editName"
                 android:ems="10"
                 android:hint="Nombre de usuario"
@@ -58,6 +58,7 @@
                 android:id="@+id/editA"
                 android:ems="10"
                 android:hint="Número de cuenta"
+                android:maxLength="18"
                 android:theme="@style/CampoTextoAzul"
                 android:drawableRight="@drawable/account"
                 />
@@ -85,8 +86,9 @@
             android:layout_marginRight="2dp"
             fancy:fb_borderColor="#042848"
             fancy:fb_radius="30dp"
-            fancy:fb_text="Limpiar  "
+            fancy:fb_text="Guardar   "
             fancy:fb_textColor="#000000"
+            fancy:fb_ghost="true"
             />
 
         <mehdi.sakout.fancybuttons.FancyButton
@@ -95,15 +97,16 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingRight="40dp"
             android:paddingTop="10dp"
             android:layout_marginLeft="2dp"
-            fancy:fb_fontIconResource="&#xf283;"
+            fancy:fb_fontIconResource="&#xf12d;"
             fancy:fb_borderWidth="2dp"
             fancy:fb_borderColor="#042848"
             fancy:fb_radius="30dp"
-            fancy:fb_text="Depositar"
+            fancy:fb_text="Borrar"
             fancy:fb_textColor="#000000"
+            fancy:fb_ghost="true"
 
             />
 
@@ -134,6 +137,8 @@
             fancy:fb_radius="30dp"
             fancy:fb_text="Depositar"
             fancy:fb_textColor="#000000"
+            fancy:fb_ghost="true"
+
 
             />
     </LinearLayout>

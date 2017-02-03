@@ -33,7 +33,7 @@ class ListActivity extends AppCompatActivity {
         fB_new = (FloatingActionButton) findViewById(R.id.fb_new_user)
 
         fB_deposit.onClickListener = {
-            Intent activityForDeposit = new Intent(this,MainActivity.class)
+            Intent activityForDeposit = new Intent(this,DepositActivity.class)
             startActivity(activityForDeposit)
         }
         fB_new.onClickListener = {
