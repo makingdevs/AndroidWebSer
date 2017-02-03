@@ -7,18 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
+import android.widget.TextView
+import groovy.transform.CompileStatic
 
 
 /**
  * Created by makingdevs on 02/02/17.
  */
-
+@CompileStatic
 public class AdapterDatos extends BaseAdapter {
+
     protected Activity activity
 
-    protected ArrayList<account> items
+    protected ArrayList<Account> items
 
-    public AdapterDatos(Activity activity, ArrayList<account> items){
+    public AdapterDatos(Activity activity, ArrayList<Account> items){
         this.activity = activity
         this.items = items
     }
@@ -39,12 +43,19 @@ public class AdapterDatos extends BaseAdapter {
     }
 
     @Override
-    View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View v = convertView
         if(convertView==null){
-            LayoutInflaterFactory Inf = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE)
+            LayoutInflater Inf = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE)
             v = Inf.inflate(R.layout.item_user, null)
         }
-
-        return null
+        Account datos = items.get(position) // Se crea un objeto de la clase  Account
+        ImageView photo = (ImageView) v.findViewById(R.id.photo_user);
+        photo.setImageDrawable(datos.Photo)
+        TextView name = (TextView) v.findViewById(R.id.txt_Name_User);
+        name.setText(datos.Name)
+        TextView account = (TextView) v.findViewById(R.id.txt_Name_Account);
+        account.setText(datos.Acoount)
+        return v
     }
 }

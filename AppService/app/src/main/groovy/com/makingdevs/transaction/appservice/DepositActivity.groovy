@@ -147,9 +147,9 @@ public class DepositActivity extends AppCompatActivity {
             }
            /* if(mEditaccount.equals("")){ println "Vacioss"
                 Toast.makeText (this ,"No dejé Campos vacíos ", 0).show()}
-            String account = mEditaccount.getText().toString()
-            if(account.equals("")){println "no debe ser vacío"}
-            else{println account}*/
+            String Account = mEditaccount.getText().toString()
+            if(Account.equals("")){println "no debe ser vacío"}
+            else{println Account}*/
 
 
 

@@ -10,9 +10,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/userlist48"
-        android:id="@+id/imageView"
+        android:id="@+id/photo_user"
         android:layout_weight="0.06"
-        android:layout_gravity="left"/>
+        android:layout_gravity="left">
+
+    </ImageView>
+
+
 
     <LinearLayout
         android:orientation="vertical"
@@ -24,13 +28,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="17dp"
-            android:id="@+id/txtNameUser" />
+            android:id="@+id/txt_Name_User" />
 
         <TextView
             android:text="Ceunta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtNameAccount"
+            android:id="@+id/txt_Name_Account"
             android:textColor="@color/colorAccent"
             android:textSize="24dp"/>
     </LinearLayout>

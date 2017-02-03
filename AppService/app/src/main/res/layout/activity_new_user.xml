@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_edit_user"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +11,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#EEEEEE"
-    tools:context=".EditUserActivity">
+    tools:context=".NewUserActivity">
     <ImageView
         android:id="@+id/imaUser"
         android:layout_width="match_parent"
@@ -62,6 +64,34 @@
 
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
+    <LinearLayout android:orientation="horizontal"
+        android:id="@+id/linaer3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="0.3"
+        android:layout_below="@+id/linaer1"
+        android:layout_margin="20dp"
+        >
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            android:layout_marginLeft="2dp"
+            fancy:fb_fontIconResource="&#xf283;"
+            fancy:fb_borderWidth="2dp"
+            fancy:fb_borderColor="#042848"
+            fancy:fb_radius="30dp"
+            fancy:fb_text="Guardar"
+            fancy:fb_textColor="#000000"
+            fancy:fb_ghost="true"
 
+
+            />
+    </LinearLayout>
 
 </RelativeLayout>

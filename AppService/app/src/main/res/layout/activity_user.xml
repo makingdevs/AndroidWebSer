@@ -36,7 +36,7 @@
                 android:layout_height="match_parent"
                 android:textColorHint="#042848"
                 android:inputType="text"
-                android:id="@+id/editName"
+                android:id="@+id/tex_editName"
                 android:ems="10"
                 android:hint="Nombre de usuario"
                 android:theme="@style/CampoTextoAzul"
@@ -55,7 +55,7 @@
                 android:layout_height="match_parent"
                 android:textColorHint="#042848"
                 android:inputType="number"
-                android:id="@+id/editA"
+                android:id="@+id/tex_editA"
                 android:ems="10"
                 android:hint="Número de cuenta"
                 android:maxLength="18"
@@ -123,7 +123,7 @@
         android:layout_margin="20dp"
         >
         <mehdi.sakout.fancybuttons.FancyButton
-            android:id="@+id/btn_deposit"
+            android:id="@+id/button_deposit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
