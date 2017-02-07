@@ -1,4 +1,4 @@
-package com.makingdevs.transaction.appservice
+package com.makingdevs.ui
 
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -8,19 +8,22 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ListView
-import android.widget.Toast
 import com.getbase.floatingactionbutton.FloatingActionButton
+import com.makingdevs.model.Account
+import com.makingdevs.transaction.appservice.R
 import groovy.transform.CompileStatic
+import groovy.transform.TypeChecked
+import groovy.transform.TypeCheckingMode
 
-
+@CompileStatic
 class ListActivity extends AppCompatActivity {
 
 
     FloatingActionButton fB_new
     FloatingActionButton fB_deposit
 
-
-    void alert(){
+    @TypeChecked(TypeCheckingMode.SKIP)
+    private void alert(){
         AlertDialog alert = new AlertDialog.Builder(this).create()
         alert.setTitle("Estás Seguro")
         alert.setMessage("Realmente desea borrar")
@@ -31,12 +34,17 @@ class ListActivity extends AppCompatActivity {
 
 
     @Override
+    @TypeChecked(TypeCheckingMode.SKIP)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         fB_deposit = (FloatingActionButton) findViewById(R.id.fb_deposit_user)
         fB_new = (FloatingActionButton) findViewById(R.id.fb_new_user)
-
+        Bundle bundle = getIntent().getExtras()
+        if(bundle != null){
+           String name = bundle.getString("name")
+            String account = bundle.getString("account")
+        }
 
         fB_deposit.onClickListener = {
             Intent activityForDeposit = new Intent(this,DepositActivity.class)
@@ -49,7 +57,7 @@ class ListActivity extends AppCompatActivity {
         ListView list_user = (ListView) findViewById(R.id.list_user)
         ArrayList<Account> arrayList = new ArrayList<Account>()
         Account account
-        account = new  Account(Photo:getResources().getDrawable(R.drawable.ic_user_24dp),Name: "Diego Vergara Magaña", Acoount: "987654321987654321")
+        account = new  Account(Photo:getDrawable(R.drawable.ic_user_24dp),Name: "Diego Vergara Magaña", Acoount: "987654321987654321")
 
         arrayList.add(account)
         account = new  Account(Photo:getDrawable(R.drawable.ic_user_24dp),Name: "Brandon Vergara Magaña", Acoount: "123456789123456789")
@@ -60,6 +68,7 @@ class ListActivity extends AppCompatActivity {
 
         list_user.onItemClickListener = new AdapterView.OnItemClickListener() {
             @Override
+
             void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 switch (position) {

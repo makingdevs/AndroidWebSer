@@ -1,10 +1,10 @@
-package com.makingdevs.transaction.appservice
+package com.makingdevs.ui
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle
 import android.widget.EditText
-import android.widget.TextView
+import com.makingdevs.transaction.appservice.R
 import groovy.transform.CompileStatic
 import mehdi.sakout.fancybuttons.FancyButton;
 @CompileStatic

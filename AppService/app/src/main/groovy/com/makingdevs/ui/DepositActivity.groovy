@@ -1,6 +1,6 @@
-package com.makingdevs.transaction.appservice
+package com.makingdevs.ui
 
-
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle
 import android.text.Editable
@@ -9,7 +9,8 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
-import com.makingdevs.transaction.common.Fluent
+import com.makingdevs.network.Fluent
+import com.makingdevs.transaction.appservice.R
 import groovy.json.JsonSlurper
 import groovy.transform.CompileStatic
 import groovy.transform.TypeChecked
@@ -88,6 +89,7 @@ public class DepositActivity extends AppCompatActivity {
         }
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Ocultar teclado virtual
@@ -100,6 +102,9 @@ public class DepositActivity extends AppCompatActivity {
         mFancyC = (FancyButton) findViewById(R.id.btn_clear)
         SMethod = (Spinner) findViewById(R.id.spinner_method)
         contador = (TextView) findViewById(R.id.texto_contador);
+        Bundle bundle = getIntent().getExtras()
+        if(bundle != null){
+        mEditaccount.setText(bundle.getString("account"))}
 
 
         mEditdescription.addTextChangedListener(new TextWatcher() {
@@ -138,10 +143,13 @@ public class DepositActivity extends AppCompatActivity {
                 amount = mEditamount.getText().toFloat()
                 println "Número de cuenta: ${NumberAccount} Monto: ${amount} Descripcion: ${Description}"
                String Method = SMethod.getSelectedItem().toString()
-               if(connection(Method)){Toast.makeText (this ,"Transacción exitosa ", 0).show() }
+               if(connection(Method)){Toast.makeText (this ,"Transacción exitosa ", 1).show()
+               Intent activityList = new Intent(this, ListActivity.class)
+                   startActivity(activityList)
+               }
                else{Toast.makeText (this ,"Paso algo inesperado", 0).show()}
                println generator(NumberAccount, amount.toString(), Description)
-               Toast.makeText (this ,"", 0).show()
+
 
 
             }
@@ -157,6 +165,7 @@ public class DepositActivity extends AppCompatActivity {
 
 
         }
+
         mFancyC.onClickListener = {
             mEditaccount.setText("")
             mEditdescription.setText("")

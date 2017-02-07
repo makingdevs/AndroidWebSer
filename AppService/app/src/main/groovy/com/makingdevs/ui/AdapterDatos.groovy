@@ -1,14 +1,15 @@
-package com.makingdevs.transaction.appservice
+package com.makingdevs.ui
 
 import android.app.Activity
 import android.content.Context
-import android.support.v4.view.LayoutInflaterFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import com.makingdevs.model.Account
+import com.makingdevs.transaction.appservice.R
 import groovy.transform.CompileStatic
 
 
@@ -51,11 +52,11 @@ public class AdapterDatos extends BaseAdapter {
         }
         Account datos = items.get(position) // Se crea un objeto de la clase  Account
         ImageView photo = (ImageView) v.findViewById(R.id.photo_user);
-        photo.setImageDrawable(datos.Photo)
+        //photo.setImageDrawable(datos.Photo)
         TextView name = (TextView) v.findViewById(R.id.txt_Name_User);
-        name.setText(datos.Name)
+        //name.setText(datos.Name)
         TextView account = (TextView) v.findViewById(R.id.txt_Name_Account);
-        account.setText(datos.Acoount)
+        //saccount.setText(datos.Acoount)
         return v
     }
 }
