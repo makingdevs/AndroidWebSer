@@ -17,8 +17,6 @@ public class NewUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_user);
         fButton_save = (FancyButton) findViewById(R.id.btn_save)
         Edit_name = (EditText) findViewById(R.id.editName)
-        Bundle recibe = getIntent().getExtras()
-        Edit_name.setText(recibe.getString("h"))
         fButton_save.onClickListener = {
 
         }

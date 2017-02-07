@@ -44,7 +44,6 @@ class ListActivity extends AppCompatActivity {
         }
         fB_new.onClickListener = {
             Intent activityForUserEdit = new Intent(this,NewUserActivity.class)
-            activityForUserEdit.putExtra("h","283738378")
             startActivity(activityForUserEdit)
         }
         ListView list_user = (ListView) findViewById(R.id.list_user)
