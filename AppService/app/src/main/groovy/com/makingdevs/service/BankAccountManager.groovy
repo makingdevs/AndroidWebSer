@@ -6,7 +6,7 @@ import com.makingdevs.model.Account
  * Created by makingdevs on 07/02/17.
  */
 interface BankAccountManager {
-
+        // Metodos de la interface en consecuencia a lista que necesitamos
     Integer getTotalAccounts()
     Account addToAccounts(Account account)
     Boolean updateAccount(Account account)

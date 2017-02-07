@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.annotation.Nullable
 
 import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.LinearLayoutManager // Usa estas versiones para no tener problemas con la compatibilidad
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -27,9 +27,9 @@ class BankAccountFragment extends Fragment {
     BankAccountFragment(){}
 
     @Override
-    View onCreateView(LayoutInflater inflater,
+    View onCreateView(LayoutInflater inflater, // Metodo para ir haciendo crecer la lista en cuestion a la vista
                       @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_bank_account, container, false)
+        View view = inflater.inflate(R.layout.fragment_bank_account, container, false) // Indicamos el Activity que hará referencia a nuestro fragmento
         mListAccounts = view.findViewById(R.id.list_accounts) as RecyclerView
         mListAccounts.setLayoutManager(new LinearLayoutManager(getActivity()))
         updateUI()
@@ -37,19 +37,19 @@ class BankAccountFragment extends Fragment {
         view
     }
 
-    void updateUI() {
-        BankAccountManager bam = new BankAccountManagerImpl()
+    void updateUI() { // Actualiza la vista, según la modificacion que se vaya realizando
+        BankAccountManager bam = new BankAccountManagerImpl() // Se crea un metodo de la clase, para saber si hay cuentas
         if(!mBankAccountAdapter){
             mBankAccountAdapter = new BankAccountAdapter(getActivity(), bam.retrieveAccounts())
-            mListAccounts.adapter = mBankAccountAdapter
+            mListAccounts.adapter = mBankAccountAdapter // Se asigna la lista del account
         } else {
-            mBankAccountAdapter.setmAccounts(bam.retrieveAccounts())
-            mBankAccountAdapter.notifyDataSetChanged()
+            mBankAccountAdapter.setmAccounts(bam.retrieveAccounts()) // le indica la lista
+            mBankAccountAdapter.notifyDataSetChanged() // Forza a actualizar la vista en cada cambio y lo hace automaticamanete
         }
     }
 
     @Override
-    void onResume() {
+    void onResume() { // Actualiza nuevamente por si las dudas
         super.onResume()
         updateUI()
     }

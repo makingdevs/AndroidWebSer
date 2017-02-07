@@ -3,16 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#EEEEEE"
-    >
+    android:background="#f7f7f7"
+
+    android:weightSum="1">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/userlist48"
+        android:layout_width="55dp"
+        android:layout_height="76dp"
+        app:srcCompat="@drawable/ic_user_24dp"
         android:id="@+id/photo_user"
-        android:layout_weight="0.06"
-        android:layout_gravity="left">
+        android:layout_gravity="left"
+
+        android:layout_weight="0.62">
 
     </ImageView>
 
@@ -21,14 +23,16 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="299dp"
-        android:layout_height="99dp">
+        android:layout_height="99dp"
+        android:background="#f7f7f7">
 
         <TextView
             android:text="Numbre de la persona"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="17dp"
-            android:id="@+id/txt_Name_User" />
+            android:id="@+id/txt_Name_User"
+           />
 
         <TextView
             android:text="Cuenta"
@@ -36,6 +40,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/txt_Name_Account"
             android:textColor="@color/colorAccent"
-            android:textSize="24dp"/>
+            android:textSize="24dp"
+            />
     </LinearLayout>
 </LinearLayout>

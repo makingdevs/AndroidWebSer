@@ -14,20 +14,26 @@ class BankAccountManagerImpl implements BankAccountManager {
     ]
 
     @Override
-    Integer getTotalAccounts() {
+    Integer getTotalAccounts() { // Metodo implementado de la interface que creamos anteriormente
         accounts.size()
     }
 
     @Override
-    Account addToAccounts(Account account) {
-        account.id = System.currentTimeMillis()
+    Account addToAccounts(Account account) { // Metodo implementado de la interface que creamos anteriormente
+        account.id = System.currentTimeMillis() // Se asigan la id de maenera alatoria porque nose pide
         accounts.add(account)
         account
     }
 
     @Override
     Boolean deleteAccount(Account account) {
-        return null
+        accounts.each { if(it.accountNumber == account.accountNumber){
+            return true
+        }
+         else {
+            return false
+        }
+        }
     }
 
     @Override

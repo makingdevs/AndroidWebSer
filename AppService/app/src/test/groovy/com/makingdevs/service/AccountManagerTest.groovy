@@ -31,7 +31,7 @@ class AccountManagerTest {
 
     @Test
     void test2AddAnotherAccount(){
-        Account newAccount = new Account(name: "Brandon Verfara", accountNumber: "098765432112345678")
+        Account newAccount = new Account(name: "Brandon Vergara", accountNumber: "098765432112345678")
         Account savedAccount = bankAccountManager.addToAccounts(newAccount)
         assert savedAccount
         assert savedAccount.id
@@ -39,5 +39,11 @@ class AccountManagerTest {
         assert totalAccounts == 2
         long id = savedAccount.id
         println id
+    }
+    @Test
+    void test3DelateAccount(){
+        Account deleteAccount = new Account(accountNumber: "098765432112345678")
+        Boolean savedAccount = bankAccountManager.deleteAccount(deleteAccount)
+        assert savedAccount
     }
 }
