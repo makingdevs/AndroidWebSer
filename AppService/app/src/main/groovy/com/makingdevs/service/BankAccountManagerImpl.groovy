@@ -27,18 +27,33 @@ class BankAccountManagerImpl implements BankAccountManager {
 
     @Override
     Boolean deleteAccount(Account account) {
-        accounts.each { if(it.accountNumber == account.accountNumber){
-            return true
+        boolean found = false
+        println account.accountNumber
+
+        accounts = accounts - accounts.find(){if(it.accountNumber == account.accountNumber){
+            found = true
         }
-         else {
-            return false
         }
-        }
+
+        return found
+
     }
 
     @Override
     Boolean updateAccount(Account account) {
-        return null
+
+        if(accounts.accountNumber.contains(account.accountNumber)|| accounts.name.contains(account.name)){
+            accounts.each {if(it.accountNumber == account.accountNumber){
+                it.name = account.name
+                it.accountNumber = account.accountNumber
+            }
+        }
+            println accounts.name
+        return true
+        }
+        println accounts.name
+        return false
+
     }
 
     @Override
