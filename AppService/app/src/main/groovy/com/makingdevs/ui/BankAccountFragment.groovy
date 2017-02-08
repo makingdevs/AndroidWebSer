@@ -1,5 +1,6 @@
 package com.makingdevs.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.Nullable
 
@@ -10,10 +11,12 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import com.getbase.floatingactionbutton.FloatingActionButton
 import com.makingdevs.service.BankAccountManager
 import com.makingdevs.service.BankAccountManagerImpl
 import com.makingdevs.transaction.appservice.R
 import groovy.transform.CompileStatic
+import mehdi.sakout.fancybuttons.FancyButton
 
 /**
  * Created by makingdevs on 07/02/17.
@@ -21,6 +24,8 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class BankAccountFragment extends Fragment {
 
+    FloatingActionButton fB_new
+    FloatingActionButton fB_deposit
     RecyclerView mListAccounts
     BankAccountAdapter mBankAccountAdapter
 
@@ -34,7 +39,21 @@ class BankAccountFragment extends Fragment {
         mListAccounts.setLayoutManager(new LinearLayoutManager(getActivity()))
         updateUI()
         setHasOptionsMenu(false)
+        fB_deposit = (FloatingActionButton) view.findViewById(R.id.fb_deposit_user) // Se  necesita indicar view antes del metdo find ya que es nuestra variable con la que interactuamos en el fragmento
+        fB_new = (FloatingActionButton) view.findViewById(R.id.fb_new_user)
+        fB_deposit.onClickListener = {
+            Intent activityForDeposit = new Intent(getActivity(),DepositActivity.class)
+            startActivity(activityForDeposit)
+        }
+        fB_new.onClickListener = {
+            Intent activityForUserEdit = new Intent(getActivity(),NewUserActivity.class) // Se usa getActivity porque estamos en un fragemento así que necesitamos indicar que queremos obtener
+            startActivity(activityForUserEdit)
+        }
         view
+
+
+
+
     }
 
     void updateUI() { // Actualiza la vista, según la modificacion que se vaya realizando
