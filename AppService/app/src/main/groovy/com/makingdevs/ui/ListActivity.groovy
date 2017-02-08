@@ -23,7 +23,7 @@ class ListActivity extends AppCompatActivity {
     FloatingActionButton fB_deposit
 
     @TypeChecked(TypeCheckingMode.SKIP)
-    private void alert(){
+    private void alert() {
         AlertDialog alert = new AlertDialog.Builder(this).create()
         alert.setTitle("Estás Seguro")
         alert.setMessage("Realmente desea borrar")
@@ -41,26 +41,26 @@ class ListActivity extends AppCompatActivity {
         fB_deposit = (FloatingActionButton) findViewById(R.id.fb_deposit_user)
         fB_new = (FloatingActionButton) findViewById(R.id.fb_new_user)
         Bundle bundle = getIntent().getExtras()
-        if(bundle != null){
-           String name = bundle.getString("name")
+        if (bundle != null) {
+            String name = bundle.getString("name")
             String account = bundle.getString("account")
         }
 
         fB_deposit.onClickListener = {
-            Intent activityForDeposit = new Intent(this,DepositActivity.class)
+            Intent activityForDeposit = new Intent(this, DepositActivity.class)
             startActivity(activityForDeposit)
         }
         fB_new.onClickListener = {
-            Intent activityForUserEdit = new Intent(this,NewUserActivity.class)
+            Intent activityForUserEdit = new Intent(this, NewUserActivity.class)
             startActivity(activityForUserEdit)
         }
         ListView list_user = (ListView) findViewById(R.id.list_user)
         ArrayList<Account> arrayList = new ArrayList<Account>()
         Account account
-        account = new  Account(Photo:getDrawable(R.drawable.ic_user_24dp),Name: "Diego Vergara Magaña", Acoount: "987654321987654321")
+        account = new Account(Photo: getDrawable(R.drawable.ic_user_24dp), Name: "Diego Vergara Magaña", Acoount: "987654321987654321")
 
         arrayList.add(account)
-        account = new  Account(Photo:getDrawable(R.drawable.ic_user_24dp),Name: "Brandon Vergara Magaña", Acoount: "123456789123456789")
+        account = new Account(Photo: getDrawable(R.drawable.ic_user_24dp), Name: "Brandon Vergara Magaña", Acoount: "123456789123456789")
         arrayList.add(account)
 
         AdapterDatos adapter = new AdapterDatos(this, arrayList)

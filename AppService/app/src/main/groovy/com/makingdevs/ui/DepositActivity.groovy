@@ -31,7 +31,7 @@ public class DepositActivity extends AppCompatActivity {
     TextView contador
     Spinner SMethod
 
-    String generator(String NumberAccount, String amount, String Description){
+    String generator(String NumberAccount, String amount, String Description) {
         Date fecha = new Date();
         System.out.println(fecha.getDateString());
         def template = """\
@@ -56,7 +56,7 @@ public class DepositActivity extends AppCompatActivity {
 
 
     @TypeChecked(TypeCheckingMode.SKIP)
-    boolean connection(String Method){
+    boolean connection(String Method) {
         try {
             String xml = generator(NumberAccount, amount.toString(), Description);
             Fluent.async {
@@ -103,8 +103,9 @@ public class DepositActivity extends AppCompatActivity {
         SMethod = (Spinner) findViewById(R.id.spinner_method)
         contador = (TextView) findViewById(R.id.texto_contador);
         Bundle bundle = getIntent().getExtras()
-        if(bundle != null){
-        mEditaccount.setText(bundle.getString("account"))}
+        if (bundle != null) {
+            mEditaccount.setText(bundle.getString("account"))
+        }
 
 
         mEditdescription.addTextChangedListener(new TextWatcher() {
@@ -127,41 +128,36 @@ public class DepositActivity extends AppCompatActivity {
 
             }
         })
-        mFancyB.onClickListener={
+        mFancyB.onClickListener = {
 
-           if(mEditaccount.getText().toString().equals("") || mEditamount.getText().toString().equals("") || mEditdescription.getText().toString().equals("") ){
-                println "no deje vaio"
-                Toast.makeText (this ,"No dejé Campos vacíos ", 0).show()
-            }
-           else if(mEditaccount.getText().length()!=18){
-               Toast.makeText (this ,"Ingrese 18 Digitos en Cuenta ", 0).show()
-           }
-            else{
+            if (mEditaccount.getText().toString().equals("") || mEditamount.getText().toString().equals("") || mEditdescription.getText().toString().equals("")) {
+                println "no deje vacio"
+                Toast.makeText(this, "No dejé Campos vacíos ", 0).show()
+            } else if (mEditaccount.getText().length() != 18) {
+                Toast.makeText(this, "Ingrese 18 Digitos en Cuenta ", 0).show()
+            } else {
 
                 NumberAccount = mEditaccount.getText()
                 Description = mEditdescription.getText()
                 amount = mEditamount.getText().toFloat()
                 println "Número de cuenta: ${NumberAccount} Monto: ${amount} Descripcion: ${Description}"
-               String Method = SMethod.getSelectedItem().toString()
-               if(connection(Method)){Toast.makeText (this ,"Transacción exitosa ", 1).show()
-               Intent activityList = new Intent(this, ListActivity.class)
-                   startActivity(activityList)
-               }
-               else{Toast.makeText (this ,"Paso algo inesperado", 0).show()}
-               println generator(NumberAccount, amount.toString(), Description)
-
+                String Method = SMethod.getSelectedItem().toString()
+                if (connection(Method)) {
+                    Toast.makeText(this, "Transacción exitosa ", 1).show()
+                    Intent activityList = new Intent(this, ListActivity.class)
+                    startActivity(activityList)
+                } else {
+                    Toast.makeText(this, "Paso algo inesperado", 0).show()
+                }
+                println generator(NumberAccount, amount.toString(), Description)
 
 
             }
-           /* if(mEditaccount.equals("")){ println "Vacioss"
-                Toast.makeText (this ,"No dejé Campos vacíos ", 0).show()}
-            String Account = mEditaccount.getText().toString()
-            if(Account.equals("")){println "no debe ser vacío"}
-            else{println Account}*/
-
-
-
-
+            /* if(mEditaccount.equals("")){ println "Vacioss"
+                 Toast.makeText (this ,"No dejé Campos vacíos ", 0).show()}
+             String Account = mEditaccount.getText().toString()
+             if(Account.equals("")){println "no debe ser vacío"}
+             else{println Account}*/
 
 
         }
@@ -173,9 +169,6 @@ public class DepositActivity extends AppCompatActivity {
             println SMethod.getSelectedItem().toString()
 
         }
-
-
-
 
 
     }
