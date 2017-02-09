@@ -1,6 +1,8 @@
 package com.makingdevs.ui
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle
@@ -31,6 +33,20 @@ public class UserActivity extends AppCompatActivity {
 
        // accountCatch =account.accountNumber.toString()
          //nameCatch = account.name.toString()
+    }
+    private void alert() {
+        AlertDialog alert = new AlertDialog.Builder(this).create()
+        alert.setTitle("Estás Seguro")
+        alert.setMessage("Realmente desea borrar")
+        alert.setButton("Si") { DialogInterface dialog, int which ->
+            Account deleteAccount = new Account(accountNumber: "${Account_txt_edit.getText().toString()}")
+            Boolean savedAccount = bankAccountManager.deleteAccount(deleteAccount)
+            Intent activityForFragment = new Intent(this, BankAccountListActivity.class)
+            startActivity(activityForFragment)
+        } as DialogInterface.OnClickListener
+        alert.setButton("No"){DialogInterface dialog, int which ->
+
+        } as DialogInterface.OnClickListener
     }
 
     @Override
@@ -76,10 +92,37 @@ public class UserActivity extends AppCompatActivity {
 
         }
         fButton_delete.onClickListener = {
-            Account deleteAccount = new Account(accountNumber: "${Account_txt_edit.getText().toString()}")
-            Boolean savedAccount = bankAccountManager.deleteAccount(deleteAccount)
-            Intent activityForFragment = new Intent(this, BankAccountListActivity.class)
-            startActivity(activityForFragment)
+            Intent activityForFragment = new Intent(this,BankAccountListActivity.class)
+            int change = 0
+            AlertDialog.Builder clearConfirmDialog = new AlertDialog.Builder(this)
+            clearConfirmDialog.setMessage("Estas seguro de querer boorrar el usuario").setCancelable(false)
+                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                void onClick(DialogInterface dialog, int id) {
+
+                    Account deleteAccount = new Account(accountNumber: "${Account_txt_edit.getText().toString()}")
+                    Boolean savedAccount = bankAccountManager.deleteAccount(deleteAccount)
+                    change = 1
+
+
+
+                }
+            })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                void onClick(DialogInterface dialog, int id) {
+                    //  Action for 'NO' Button
+                    dialog.cancel();
+                }
+            })
+            AlertDialog alert = clearConfirmDialog.create()
+            alert.setIcon(R.drawable.ic_error_outline_black_24dp);
+            alert.setTitle("Alerta")
+            alert.show()
+            alert.onDismissListener={
+                startActivity(activityForFragment)
+            }
+
+
+
         }
 
 

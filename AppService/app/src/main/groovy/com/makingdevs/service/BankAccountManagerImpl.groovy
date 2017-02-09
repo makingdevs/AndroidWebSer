@@ -7,11 +7,11 @@ import groovy.transform.CompileStatic
 class BankAccountManagerImpl implements BankAccountManager {
 
     static List<Account> accounts = [
-            new Account(name:"Juan",accountNumber: "123456", id: System.currentTimeMillis()),
-            new Account(name:"Prueba",accountNumber: "123456789", id: System.currentTimeMillis()),
-            new Account(name:"Jorge",accountNumber: "123456", id: System.currentTimeMillis()),
-            new Account(name:"Carlo",accountNumber: "123456", id: System.currentTimeMillis()),
-            new Account(name:"Brandon",accountNumber: "123456", id: System.currentTimeMillis())
+            new Account(name:"Juan",accountNumber: "43545433", id: System.currentTimeMillis()),
+            new Account(name:"Prueba",accountNumber: "1343452222", id: System.currentTimeMillis()),
+            new Account(name:"Jorge",accountNumber: "44783464", id: System.currentTimeMillis()),
+            new Account(name:"Carlo",accountNumber: "9828744", id: System.currentTimeMillis()),
+            new Account(name:"Brandon",accountNumber: "8374933", id: System.currentTimeMillis())
     ]
 
     @Override
