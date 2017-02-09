@@ -16,6 +16,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 public class UserActivity extends AppCompatActivity {
     FancyButton fButton_save
     FancyButton fButton_deposit
+    FancyButton fButton_delete
     EditText Name_txt_edit
     EditText Account_txt_edit
     String accountCatch
@@ -40,6 +41,7 @@ public class UserActivity extends AppCompatActivity {
         Account_txt_edit = (EditText) findViewById(R.id.tex_editA)
         fButton_deposit = (FancyButton) findViewById(R.id.button_deposit)
         fButton_save = (FancyButton) findViewById(R.id.button_edit)
+        fButton_delete = (FancyButton) findViewById(R.id.button_delete)
         Name_txt_edit.setEnabled(false)
         Account_txt_edit.setEnabled(false)
         Bundle bundle = getIntent().getExtras()
