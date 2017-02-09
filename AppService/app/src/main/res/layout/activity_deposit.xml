@@ -59,7 +59,7 @@
             android:ems="10"
             android:hint="Número de cuenta"
             android:theme="@style/CampoTextoAzul"
-            android:drawableRight="@drawable/account"
+            android:drawableRight="@drawable/ic_credit_card_black_24dp"
            />
 
     </android.support.design.widget.TextInputLayout>
@@ -76,7 +76,7 @@
                 android:ems="10"
                 android:hint="Monto"
                 android:theme="@style/CampoTextoAzul"
-                android:drawableRight="@drawable/coin">
+                android:drawableRight="@drawable/ic_attach_money_black_24dp">
 
             </EditText>
 
@@ -96,7 +96,7 @@
                 android:hint="Descripción"
                 android:maxLength="100"
                 android:theme="@style/CampoTextoAzul"
-                android:drawableRight="@drawable/user"
+                android:drawableRight="@drawable/ic_chrome_reader_mode_black_24dp"
                 android:singleLine="true"
                 />
             <TextView

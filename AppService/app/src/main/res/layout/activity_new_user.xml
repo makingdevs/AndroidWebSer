@@ -59,7 +59,7 @@
                 android:ems="10"
                 android:hint="Número de cuenta"
                 android:theme="@style/CampoTextoAzul"
-                android:drawableRight="@drawable/account"
+                android:drawableRight="@drawable/ic_credit_card_black_24dp"
                 />
 
         </android.support.design.widget.TextInputLayout>

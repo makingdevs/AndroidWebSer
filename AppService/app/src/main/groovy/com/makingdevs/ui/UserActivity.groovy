@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle
 import android.widget.EditText
+import android.widget.Toast
 import com.makingdevs.model.Account
 import com.makingdevs.service.BankAccountManager
 import com.makingdevs.service.BankAccountManagerImpl
@@ -19,6 +20,7 @@ public class UserActivity extends AppCompatActivity {
     EditText Account_txt_edit
     String accountCatch
     String nameCatch
+    int status_EditText = 0
     BankAccountManager bankAccountManager = new BankAccountManagerImpl()
 
     static newIntentWithContext(Context ctx, Account account){
@@ -38,6 +40,8 @@ public class UserActivity extends AppCompatActivity {
         Account_txt_edit = (EditText) findViewById(R.id.tex_editA)
         fButton_deposit = (FancyButton) findViewById(R.id.button_deposit)
         fButton_save = (FancyButton) findViewById(R.id.button_edit)
+        Name_txt_edit.setEnabled(false)
+        Account_txt_edit.setEnabled(false)
         Bundle bundle = getIntent().getExtras()
         if(bundle != null){
         Name_txt_edit.setText(bundle.getString("name"))
@@ -49,9 +53,25 @@ public class UserActivity extends AppCompatActivity {
             startActivity(activityDeposit)
         }
         fButton_save.onClickListener ={
-            //Account updateAccount = new Account(name: "${Account_txt_edit.getText().toString()}", accountNumber: "1234567890123456780")
-            Account updateAccount = new Account(name: "${Name_txt_edit.getText().toString()}", accountNumber: "${Account_txt_edit.getText().toString()}")
-            bankAccountManager.updateAccount(updateAccount)
+            if(status_EditText==0){
+                Name_txt_edit.setEnabled(true)
+                Account_txt_edit.setEnabled(true)
+                fButton_save.setText("Guardar  ")
+                status_EditText = 1
+            }
+            else{
+                if(Account_txt_edit.getText().length() !=18 ){
+                    Toast.makeText(this, "Deben ser 18 digitos ", 0).show()
+                }
+                else{
+                    Account updateAccount = new Account(name: "${Name_txt_edit.getText().toString()}", accountNumber: "${Account_txt_edit.getText().toString()}")
+                    bankAccountManager.updateAccount(updateAccount)
+                    Name_txt_edit.setEnabled(false)
+                    Account_txt_edit.setEnabled(false)
+                    fButton_save.setText("Editar       ")
+                    status_EditText = 0}
+                }
+
         }
 
 

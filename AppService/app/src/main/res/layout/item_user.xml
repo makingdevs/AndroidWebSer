@@ -41,6 +41,7 @@
             android:id="@+id/txt_Name_Account"
             android:textColor="@color/colorAccent"
             android:textSize="24dp"
+            android:drawableRight="@drawable/ic_credit_card_black_24dp"
             />
     </LinearLayout>
 </LinearLayout>

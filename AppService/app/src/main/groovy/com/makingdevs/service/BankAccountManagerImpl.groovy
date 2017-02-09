@@ -44,7 +44,7 @@ class BankAccountManagerImpl implements BankAccountManager {
     Boolean updateAccount(Account account) {
 
         if(accounts.accountNumber.contains(account.accountNumber) || accounts.name.contains(account.name)){
-            accounts.each {if(it.accountNumber == account.accountNumber){
+            accounts.each {if(it.accountNumber == account.accountNumber || it.name == account.name){
                 it.name = account.name
                 it.accountNumber = account.accountNumber
             }
