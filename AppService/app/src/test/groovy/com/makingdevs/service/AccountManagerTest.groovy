@@ -16,7 +16,7 @@ class AccountManagerTest {
     @Test
     void test0InitialAccountsInManager(){
         int totalAccounts = bankAccountManager.totalAccounts
-        assert totalAccounts == 4
+        assert totalAccounts == 5
     }
 
     @Test
@@ -26,7 +26,7 @@ class AccountManagerTest {
         assert savedAccount
         assert savedAccount.id
         int totalAccounts = bankAccountManager.totalAccounts
-        assert totalAccounts == 5
+        assert totalAccounts == 6
     }
 
     @Test
@@ -36,7 +36,7 @@ class AccountManagerTest {
         assert savedAccount
         assert savedAccount.id
         int totalAccounts = bankAccountManager.totalAccounts
-        assert totalAccounts == 6
+        assert totalAccounts == 7
         long id = savedAccount.id
         println id
     }
@@ -51,11 +51,11 @@ class AccountManagerTest {
         assert savedAccount
     }
     @Test
-    void test4DelateAccount(){
+    void test4Updateccount(){
         int totalAccounts = bankAccountManager.totalAccounts
         println totalAccounts
         //Account account = new Account(accountNumber: "123456789012345678")
-        Account updateAccount = new Account(name: "Jose Jose", accountNumber: "1234567890123456780")
+        Account updateAccount = new Account(name: "Prueba2", accountNumber: "123456789")
         Boolean editAccount = bankAccountManager.updateAccount(updateAccount)
         totalAccounts = bankAccountManager.totalAccounts
         println totalAccounts

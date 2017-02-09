@@ -8,6 +8,7 @@ class BankAccountManagerImpl implements BankAccountManager {
 
     static List<Account> accounts = [
             new Account(name:"Juan",accountNumber: "123456", id: System.currentTimeMillis()),
+            new Account(name:"Prueba",accountNumber: "123456789", id: System.currentTimeMillis()),
             new Account(name:"Jorge",accountNumber: "123456", id: System.currentTimeMillis()),
             new Account(name:"Carlo",accountNumber: "123456", id: System.currentTimeMillis()),
             new Account(name:"Brandon",accountNumber: "123456", id: System.currentTimeMillis())
@@ -42,16 +43,19 @@ class BankAccountManagerImpl implements BankAccountManager {
     @Override
     Boolean updateAccount(Account account) {
 
-        if(accounts.accountNumber.contains(account.accountNumber)|| accounts.name.contains(account.name)){
+        if(accounts.accountNumber.contains(account.accountNumber) || accounts.name.contains(account.name)){
             accounts.each {if(it.accountNumber == account.accountNumber){
                 it.name = account.name
                 it.accountNumber = account.accountNumber
             }
         }
             println accounts.name
+            println(accounts.accountNumber)
+            println "Actualiza"
         return true
         }
         println accounts.name
+        println "No entre"
         return false
 
     }

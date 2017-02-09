@@ -74,7 +74,7 @@
         android:layout_below="@+id/linaer1"
         android:layout_marginTop="10dp">
         <mehdi.sakout.fancybuttons.FancyButton
-            android:id="@+id/btn_edit"
+            android:id="@+id/button_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
