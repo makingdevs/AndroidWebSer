@@ -75,6 +75,12 @@ public class UserActivity extends AppCompatActivity {
                 }
 
         }
+        fButton_delete.onClickListener = {
+            Account deleteAccount = new Account(accountNumber: "${Account_txt_edit.getText().toString()}")
+            Boolean savedAccount = bankAccountManager.deleteAccount(deleteAccount)
+            Intent activityForFragment = new Intent(this, BankAccountListActivity.class)
+            startActivity(activityForFragment)
+        }
 
 
     }
