@@ -61,5 +61,16 @@ class AccountManagerTest {
         println totalAccounts
         assert editAccount
     }
+    @Test
+    void test5DBAccount(){
+        int totalAccounts = bankAccountManager.totalAccounts
+        println totalAccounts
+        //Account account = new Account(accountNumber: "123456789012345678")
+        Account updateAccount = new Account(name: "Prueba2", accountNumber: "123456789")
+        Boolean editAccount = bankAccountManager.updateAccount(updateAccount)
+        totalAccounts = bankAccountManager.totalAccounts
+        println totalAccounts
+        assert editAccount
+    }
 
 }
