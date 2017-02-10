@@ -38,7 +38,6 @@ public class NewUserActivity extends AppCompatActivity {
             }
             else{
                 Account newAccount = new Account(name: "${mEdit_name.getText().toString()}", accountNumber: "${mEdit_account.getText().toString()}")
-                println newAccount.name
                 bankAccountManager.addToAccounts(newAccount)
                 fButton_save.setBorderColor(Color.CYAN)
                 Intent activityForFragment = new Intent(this, BankAccountListActivity.class)

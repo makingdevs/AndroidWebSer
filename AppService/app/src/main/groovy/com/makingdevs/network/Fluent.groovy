@@ -49,7 +49,7 @@ public class Fluent<Result, Progress> extends AsyncTask<Object, Progress, Result
             return this;
         }
 
-        void then(ResultConsumer<Result> then) {
+        def then(ResultConsumer<Result> then) {
             Fluent<Result, Progress> resultFluent = new Fluent<Result, Progress>(request, then, progress);
             resultFluent.execute();
         }

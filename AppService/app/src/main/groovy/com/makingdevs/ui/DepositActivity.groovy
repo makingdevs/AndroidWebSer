@@ -9,12 +9,9 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
-import com.makingdevs.network.Fluent
+import com.makingdevs.network.PaymentClient
 import com.makingdevs.transaction.appservice.R
-import groovy.json.JsonSlurper
 import groovy.transform.CompileStatic
-import groovy.transform.TypeChecked
-import groovy.transform.TypeCheckingMode
 import mehdi.sakout.fancybuttons.FancyButton;
 
 
@@ -31,63 +28,6 @@ public class DepositActivity extends AppCompatActivity {
     TextView contador
     Spinner SMethod
 
-    String generator(String NumberAccount, String amount, String Description) {
-        Date fecha = new Date();
-        System.out.println(fecha.getDateString());
-        def template = """\
-<Abono>
-<Clave>1101</Clave>
-<FechaOperacion>${fecha.format("yyyyMMdd")}</FechaOperacion>
-<InstitucionOrdenante clave="846"/>
-<InstitucionBeneficiaria clave="90646"/>
-<ClaveRastreo>GEM801</ClaveRastreo>
-<Monto>${amount}</Monto>
-<NombreBeneficiario>Techminds</NombreBeneficiario>
-<TipoCuentaBeneficiario clave="40"/>
-<CuentaBeneficiario>${NumberAccount}</CuentaBeneficiario>
-<RfcCurpBeneficiario>RFC121212ABC</RfcCurpBeneficiario>
-<ConceptoPago>${Description}</ConceptoPago>
-<ReferenciaNumerica>27122016</ReferenciaNumerica>
-<Empresa>STP</Empresa>
-</Abono>
-"""
-        return template
-    }
-
-
-    @TypeChecked(TypeCheckingMode.SKIP)
-    boolean connection(String Method) {
-        try {
-            String xml = generator(NumberAccount, amount.toString(), Description);
-            Fluent.async {
-                def jsonSlurper = new JsonSlurper()
-                URLConnection connection
-                connection = new URL("http://impulsomx-api-${Method}.modulusuno.com/STP/stpDepositNotification").openConnection()
-                connection.requestMethod = 'POST'
-                connection.doOutput = true
-                def writer = new OutputStreamWriter(connection.outputStream)
-                writer.write("notification=${xml}")
-                writer.flush()
-                writer.close()
-                connection.connect()
-                println connection
-                def response = connection.content.text
-                println response
-
-                jsonSlurper.parseText(response)
-
-            } then { result ->
-
-                println result.properties
-                //println result['message']
-
-            }
-            return true;
-        }
-        catch (Exception e) {
-            return false;
-        }
-    }
 
 
     @Override
@@ -140,16 +80,17 @@ public class DepositActivity extends AppCompatActivity {
                 NumberAccount = mEditaccount.getText()
                 Description = mEditdescription.getText()
                 amount = mEditamount.getText().toFloat()
-                println "Número de cuenta: ${NumberAccount} Monto: ${amount} Descripcion: ${Description}"
                 String Method = SMethod.getSelectedItem().toString()
-                if (connection(Method)) {
-                    Toast.makeText(this, "Transacción exitosa ", 1).show()
-                    Intent activityList = new Intent(this, ListActivity.class)
+                PaymentClient paymentClient = new PaymentClient(numberAccount:NumberAccount,amount:"${amount}",description:Description, environment:Method)
+                paymentClient.onSuccess = {
+                    Toast.makeText(this, "Transacción exitosa !!!", 1).show()
+                    Intent activityList = new Intent(this, BankAccountListActivity.class)
                     startActivity(activityList)
-                } else {
+                }
+                paymentClient.onError = {
                     Toast.makeText(this, "Paso algo inesperado", 0).show()
                 }
-                println generator(NumberAccount, amount.toString(), Description)
+                paymentClient.doPayment()
 
 
             }
