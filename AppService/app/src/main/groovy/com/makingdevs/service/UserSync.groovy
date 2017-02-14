@@ -6,8 +6,8 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log;
 
-import static com.makingdevs.database.appserviceDb.*
-import com.makingdevs.database.AppserviceOpenHelper
+import static com.makingdevs.database.AccountDbSchema.*
+import com.makingdevs.database.AccountBaseHelper
 import com.makingdevs.model.Account
 import groovy.transform.CompileStatic;
 
@@ -19,21 +19,21 @@ public class UserSync {
 
     private Context mContext
     private SQLiteDatabase db
-    private AppserviceOpenHelper mopenhelper
+    private AccountBaseHelper mopenhelper
 
 
     UserSync(Context context) {
         mContext = context.getApplicationContext()
-        mopenhelper = new AppserviceOpenHelper(mContext)
+        mopenhelper = new AccountBaseHelper(mContext)
         db = mopenhelper.getWritableDatabase()
     }
     Account accountAdd(Account account){
         ContentValues item = new ContentValues()
-        item.put(UserTable.Column.NAME,account.name)
-        item.put(UserTable.Column.ACCOUNTNUMBER,account.accountNumber)
-        db.insert(UserTable.NAME,null,item)
-        account
-
+        //item.put(AccountTable.Column.NAME,account.name)
+        //item.put(AccountTable.Column.ACCOUNTNUMBER,account.accountNumber)
+        //db.insert(AccountTable.NAME,null,item)
+        //account
+        null
     }
 
     void findById(Long id){

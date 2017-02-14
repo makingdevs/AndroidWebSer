@@ -6,13 +6,12 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import com.getbase.floatingactionbutton.FloatingActionButton
+import com.makingdevs.service.BankAccountManagerDBImpl
 import com.makingdevs.transaction.appservice.R
 import groovy.transform.CompileStatic
 
 @CompileStatic
 class BankAccountListActivity extends AppCompatActivity {
-
-
 
     @Override
     void onCreate(Bundle savedInstanceState) {
@@ -27,7 +26,7 @@ class BankAccountListActivity extends AppCompatActivity {
     }
 
     Fragment createFragment() {
-        new BankAccountFragment()
+         new BankAccountFragment()
     }
 
 }

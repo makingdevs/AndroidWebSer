@@ -1,18 +1,22 @@
 package com.makingdevs.service
 
+import android.content.Context
 import com.makingdevs.model.Account
 import groovy.transform.CompileStatic
 
 @CompileStatic
+@Singleton
 class BankAccountManagerImpl implements BankAccountManager {
+
 
     static List<Account> accounts = [
             new Account(name:"QA",accountNumber: "646180132406300019", id: System.currentTimeMillis()),
             new Account(name:"Prueba",accountNumber: "1343452222", id: System.currentTimeMillis()),
             new Account(name:"Jorge",accountNumber: "646180132406300006", id: System.currentTimeMillis()),
-            new Account(name:"Stage",accountNumber: "646180132406600010", id: System.currentTimeMillis()),
-            new Account(name:"Brandon",accountNumber: "646180132407000004", id: System.currentTimeMillis())
+            new Account(name:"Stage",accountNumber: "646180132406600010", id: System.currentTimeMillis())
+            //new Account(name:"Brandon",accountNumber: "646180132407000004", id: System.currentTimeMillis())
     ]
+
 
     @Override
     Integer getTotalAccounts() { // Metodo implementado de la interface que creamos anteriormente

@@ -7,12 +7,14 @@ import android.support.annotation.Nullable
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager // Usa estas versiones para no tener problemas con la compatibilidad
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import com.getbase.floatingactionbutton.FloatingActionButton
 import com.makingdevs.service.BankAccountManager
+import com.makingdevs.service.BankAccountManagerDBImpl
 import com.makingdevs.service.BankAccountManagerImpl
 import com.makingdevs.transaction.appservice.R
 import groovy.transform.CompileStatic
@@ -24,12 +26,15 @@ import mehdi.sakout.fancybuttons.FancyButton
 @CompileStatic
 class BankAccountFragment extends Fragment {
 
+    private static final String TAG = "BankAccountFragment"
+
     FloatingActionButton fB_new
     FloatingActionButton fB_deposit
     RecyclerView mListAccounts
     BankAccountAdapter mBankAccountAdapter
 
-    BankAccountFragment(){}
+    BankAccountFragment(){
+    }
 
     @Override
     View onCreateView(LayoutInflater inflater, // Metodo para ir haciendo crecer la lista en cuestion a la vista
@@ -57,12 +62,13 @@ class BankAccountFragment extends Fragment {
     }
 
     void updateUI() { // Actualiza la vista, según la modificacion que se vaya realizando
-        BankAccountManager bam = new BankAccountManagerImpl() // Se crea un metodo de la clase, para saber si hay cuentas
+        //BankAccountManager bam = new BankAccountManagerImpl() // Se crea un metodo de la clase, para saber si hay cuentas
+        Log.d(TAG, "Counter ${BankAccountManagerDBImpl.getInstance(this.context).totalAccounts}")
         if(!mBankAccountAdapter){
-            mBankAccountAdapter = new BankAccountAdapter(getActivity(), bam.retrieveAccounts())
+            mBankAccountAdapter = new BankAccountAdapter(getActivity(), BankAccountManagerDBImpl.getInstance(this.context).retrieveAccounts())
             mListAccounts.adapter = mBankAccountAdapter // Se asigna la lista del account
         } else {
-            mBankAccountAdapter.setmAccounts(bam.retrieveAccounts()) // le indica la lista
+            mBankAccountAdapter.setmAccounts(BankAccountManagerDBImpl.getInstance(this.context).retrieveAccounts()) // le indica la lista
             mBankAccountAdapter.notifyDataSetChanged() // Forza a actualizar la vista en cada cambio y lo hace automaticamanete
         }
     }

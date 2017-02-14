@@ -1,7 +1,6 @@
 package com.makingdevs.service
 
 import com.makingdevs.model.Account
-import com.makingdevs.service.BankAccountManager
 import groovy.transform.CompileStatic
 import org.junit.FixMethodOrder
 import org.junit.Test
@@ -61,16 +60,14 @@ class AccountManagerTest {
         println totalAccounts
         assert editAccount
     }
+    /*
     @Test
     void test5DBAccount(){
-        int totalAccounts = bankAccountManager.totalAccounts
-        println totalAccounts
-        //Account account = new Account(accountNumber: "123456789012345678")
-        Account updateAccount = new Account(name: "Prueba2", accountNumber: "123456789")
-        Boolean editAccount = bankAccountManager.updateAccount(updateAccount)
-        totalAccounts = bankAccountManager.totalAccounts
-        println totalAccounts
-        assert editAccount
-    }
+        Context context
+        Account newAccount = new Account(name: "Jose Juan Reyes", accountNumber: "123456789012345678")
+        AccountBaseHelper db = new AccountBaseHelper(context)
+        //db.insert(newAccount)
 
+    }
+    */
 }

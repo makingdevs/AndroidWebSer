@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.makingdevs.model.Account
 import com.makingdevs.service.BankAccountManager
+import com.makingdevs.service.BankAccountManagerDBImpl
 import com.makingdevs.service.BankAccountManagerImpl
 import com.makingdevs.transaction.appservice.R
 import groovy.transform.CompileStatic
@@ -24,7 +25,7 @@ public class UserActivity extends AppCompatActivity {
     String accountCatch
     String nameCatch
     int status_EditText = 0
-    BankAccountManager bankAccountManager = new BankAccountManagerImpl()
+    BankAccountManager bankAccountManager = BankAccountManagerDBImpl.getInstance(this.applicationContext)
 
     static newIntentWithContext(Context ctx, Account account){
         new Intent(ctx, UserActivity)

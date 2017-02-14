@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.makingdevs.model.Account
 import com.makingdevs.service.BankAccountManager
+import com.makingdevs.service.BankAccountManagerDBImpl
 import com.makingdevs.service.BankAccountManagerImpl
 import com.makingdevs.transaction.appservice.R
 import groovy.transform.CompileStatic
@@ -19,7 +20,7 @@ public class NewUserActivity extends AppCompatActivity {
     EditText mEdit_name
     EditText mEdit_account
     Integer position
-    BankAccountManager bankAccountManager = new BankAccountManagerImpl()
+    BankAccountManager bankAccountManager = BankAccountManagerDBImpl.getInstance(applicationContext)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
