@@ -32,14 +32,14 @@ public class NewUserActivity extends AppCompatActivity {
         mEdit_account = (EditText) findViewById(R.id.editAccount)
         fButton_save.onClickListener = {
 
-            if(mEdit_account.getText().equals("") || mEdit_name.getText().equals("")){
+            if(!mEdit_account.text || !mEdit_name.text){
                 Toast.makeText(this, "No deje campos vacios", 1).show()
             }
-            else if(mEdit_account.getText().length() !=18){
+            else if(mEdit_account.text.length() != 18){
                 Toast.makeText(this, "Deben ser 18 digitos ", 1).show()
             }
             else{
-                Account newAccount = new Account(name: "${mEdit_name.getText().toString()}", accountNumber: "${mEdit_account.getText().toString()}")
+                Account newAccount = new Account(name: "${mEdit_name.text.toString()}", accountNumber: "${mEdit_account.text.toString()}")
                 bankAccountManager.addToAccounts(newAccount)
                 fButton_save.setBorderColor(Color.CYAN)
                 Intent activityForFragment = new Intent(this, BankAccountListActivity.class)

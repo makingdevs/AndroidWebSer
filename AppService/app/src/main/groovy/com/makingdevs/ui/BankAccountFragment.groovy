@@ -56,9 +56,6 @@ class BankAccountFragment extends Fragment {
         }
         view
 
-
-
-
     }
 
     void updateUI() { // Actualiza la vista, según la modificacion que se vaya realizando

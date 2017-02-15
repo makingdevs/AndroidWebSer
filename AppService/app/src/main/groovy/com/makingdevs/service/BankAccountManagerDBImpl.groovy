@@ -19,7 +19,7 @@ class BankAccountManagerDBImpl implements BankAccountManager {
     private Context mContext
     private SQLiteDatabase mDatabase
 
-    static public BankAccountManagerDBImpl getInstance(Context context){ // Tiene que ser static porque el context no puede cambiar
+    static BankAccountManagerDBImpl getInstance(Context context){ // Tiene que ser static porque el context no puede cambiar
         if(bankAccountManagerDB == null)
             bankAccountManagerDB = new BankAccountManagerDBImpl(context)
         return bankAccountManagerDB
@@ -32,10 +32,11 @@ class BankAccountManagerDBImpl implements BankAccountManager {
 
     @Override
     Integer getTotalAccounts() {
-        String query = "SELECT count(*) as counter FROM accounts;"
-        Cursor cursor = mDatabase.rawQuery(query)
-        Log.d(TAG, "${cursor.properties}")
-        cursor.getCount()
+        Cursor c = mDatabase.rawQuery("SELECT * FROM accounts", null);
+        c.moveToNext();
+
+        int query = c.getCount();
+        return query;
     }
 
     @Override
@@ -45,6 +46,7 @@ class BankAccountManagerDBImpl implements BankAccountManager {
         item.put(AccountDbSchema.AccountTable.Column.NAME,account.name)
         item.put(AccountDbSchema.AccountTable.Column.ACCOUNT_NUMBER,account.accountNumber)
         db.insert(AccountDbSchema.AccountTable.NAME,null,item)
+
         account
     }
 
@@ -60,11 +62,25 @@ class BankAccountManagerDBImpl implements BankAccountManager {
 
     @Override
     Account getAccountById(Long id) {
-        return null
+        Account a = new Account()
+        Cursor cursor = mDatabase.rawQuery("SELECT * FROM accounts WHERE id = ${id}", null)
+        cursor.moveToNext()
+        a.id = cursor.getInt(0)
+        a.name = cursor.getString(1)
+        a.accountNumber = cursor.getString(2)
+        a
     }
 
     @Override
     List<Account> retrieveAccounts() {
-        []
+        List<Account> accounts = []
+        Cursor cursor = mDatabase.rawQuery("SELECT * FROM accounts", null)
+        while(cursor.moveToNext()){
+            Account a = new Account()
+            a.name = cursor.getString(1)
+            a.accountNumber = cursor.getString(2)
+            accounts << a
+        }
+        accounts
     }
 }

@@ -25,7 +25,7 @@ public class UserActivity extends AppCompatActivity {
     String accountCatch
     String nameCatch
     int status_EditText = 0
-    BankAccountManager bankAccountManager = BankAccountManagerDBImpl.getInstance(this.applicationContext)
+    BankAccountManager bankAccountManager
 
     static newIntentWithContext(Context ctx, Account account){
         new Intent(ctx, UserActivity)
@@ -54,6 +54,9 @@ public class UserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+
+        bankAccountManager = BankAccountManagerDBImpl.getInstance(this.applicationContext)
+
         Name_txt_edit = (EditText) findViewById(R.id.tex_editName)
         Account_txt_edit = (EditText) findViewById(R.id.tex_editA)
         fButton_deposit = (FancyButton) findViewById(R.id.button_deposit)

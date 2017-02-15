@@ -11,7 +11,7 @@ import groovy.transform.CompileStatic;
  * Created by makingdevs on 10/02/17.
  */
 @CompileStatic
- class AccountBaseHelper extends SQLiteOpenHelper {
+class AccountBaseHelper extends SQLiteOpenHelper {
 
     static final String DATABASE_NAME = "account_base.db"
     static final int VERSION = 1
