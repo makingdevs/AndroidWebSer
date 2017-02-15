@@ -5,7 +5,7 @@ import com.makingdevs.model.Account
 import groovy.transform.CompileStatic
 
 @CompileStatic
-@Singleton
+
 class BankAccountManagerImpl implements BankAccountManager {
 
 

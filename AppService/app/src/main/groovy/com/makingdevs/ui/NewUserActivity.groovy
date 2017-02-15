@@ -20,11 +20,12 @@ public class NewUserActivity extends AppCompatActivity {
     EditText mEdit_name
     EditText mEdit_account
     Integer position
-    BankAccountManager bankAccountManager = BankAccountManagerDBImpl.getInstance(applicationContext)
+    BankAccountManager bankAccountManager
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        bankAccountManager = BankAccountManagerDBImpl.getInstance(getApplicationContext()) // Lo cambie de lugar porque debe obtener el contexto del onCreate
         setContentView(R.layout.activity_new_user);
         fButton_save = (FancyButton) findViewById(R.id.btn_save)
         mEdit_name = (EditText) findViewById(R.id.editName)
