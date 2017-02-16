@@ -1,6 +1,7 @@
 package com.makingdevs.ui
 
 import android.content.Intent
+import android.database.Cursor
 import android.graphics.Color
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -40,7 +41,16 @@ public class NewUserActivity extends AppCompatActivity {
             }
             else{
                 Account newAccount = new Account(name: "${mEdit_name.text.toString()}", accountNumber: "${mEdit_account.text.toString()}")
-                bankAccountManager.addToAccounts(newAccount)
+                Cursor c = bankAccountManager.AccountAlreadyExists(newAccount)
+                if(c.count !=0){
+                    Toast.makeText(this, "La cuenta ya existe",1).show()
+
+                }
+                else {
+                    bankAccountManager.addToAccounts(newAccount)
+                }
+
+                println(newAccount.id)
                 fButton_save.setBorderColor(Color.CYAN)
                 Intent activityForFragment = new Intent(this, BankAccountListActivity.class)
                 startActivity(activityForFragment)

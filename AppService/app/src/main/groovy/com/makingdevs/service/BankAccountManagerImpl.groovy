@@ -1,6 +1,7 @@
 package com.makingdevs.service
 
 import android.content.Context
+import android.database.Cursor
 import com.makingdevs.model.Account
 import groovy.transform.CompileStatic
 
@@ -74,5 +75,15 @@ class BankAccountManagerImpl implements BankAccountManager {
     @Override
     List<Account> retrieveAccounts() {
         accounts
+    }
+
+    @Override
+   Integer getId(String name, String account) {
+        return null
+    }
+
+    @Override
+    Cursor AccountAlreadyExists(Account account) {
+        return null
     }
 }

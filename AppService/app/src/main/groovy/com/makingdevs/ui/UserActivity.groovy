@@ -24,7 +24,7 @@ public class UserActivity extends AppCompatActivity {
     EditText Account_txt_edit
     String accountCatch
     String nameCatch
-    String _id
+    int _id
     int status_EditText = 0
     BankAccountManager bankAccountManager
 
@@ -70,6 +70,8 @@ public class UserActivity extends AppCompatActivity {
         Name_txt_edit.setText(bundle.getString("name"))
         Account_txt_edit.setText(bundle.getString("account"))
             _id = bundle.getInt("id")
+
+
         }
 
         fButton_deposit.onClickListener ={
@@ -83,6 +85,7 @@ public class UserActivity extends AppCompatActivity {
                 Account_txt_edit.setEnabled(true)
                 fButton_save.setText("Guardar  ")
                 status_EditText = 1
+                _id = bankAccountManager.getId(Name_txt_edit.getText().toString(),Account_txt_edit.text.toString())
             }
             else{
                 if(Account_txt_edit.getText().length() !=18 ){
@@ -90,6 +93,7 @@ public class UserActivity extends AppCompatActivity {
                 }
                 else{
                     Account updateAccount = new Account(name: "${Name_txt_edit.getText().toString()}", accountNumber: "${Account_txt_edit.getText().toString()}")
+                    updateAccount.id = _id
                     bankAccountManager.updateAccount(updateAccount)
                     Name_txt_edit.setEnabled(false)
                     Account_txt_edit.setEnabled(false)

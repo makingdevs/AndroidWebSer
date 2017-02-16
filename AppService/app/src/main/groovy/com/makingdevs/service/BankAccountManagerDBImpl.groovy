@@ -48,6 +48,7 @@ class BankAccountManagerDBImpl implements BankAccountManager {
         item.put(AccountDbSchema.AccountTable.Column.ACCOUNT_NUMBER,account.accountNumber)
         db.insert(AccountDbSchema.AccountTable.NAME,null,item)
 
+
         account
     }
 
@@ -56,7 +57,8 @@ class BankAccountManagerDBImpl implements BankAccountManager {
        ContentValues item = new ContentValues()
         item.put(AccountDbSchema.AccountTable.Column.NAME,account.name)
         item.put(AccountDbSchema.AccountTable.Column.ACCOUNT_NUMBER,account.accountNumber)
-        mDatabase.update(AccountDbSchema.AccountTable.NAME,item, AccountDbSchema.AccountTable.Column.ACCOUNT_NUMBER +" = '${account.accountNumber}' or "+AccountDbSchema.AccountTable.Column.NAME +"= '${account.name}'")
+        mDatabase.update(AccountDbSchema.AccountTable.NAME,item,"_id = ${account.id}")
+        //mDatabase.update(AccountDbSchema.AccountTable.NAME,item, AccountDbSchema.AccountTable.Column.ACCOUNT_NUMBER +" = '${account.accountNumber}' or "+AccountDbSchema.AccountTable.Column.NAME +"= '${account.name}'")
     }
 
     @Override
@@ -74,7 +76,7 @@ class BankAccountManagerDBImpl implements BankAccountManager {
     @Override
     Account getAccountById(Long id) {
         Account a = new Account()
-        Cursor cursor = mDatabase.rawQuery("SELECT * FROM accounts WHERE id = ${id}", null)
+        Cursor cursor = mDatabase.rawQuery("SELECT * FROM accounts WHERE _id = ${id}", null)
         cursor.moveToNext()
         a.id = cursor.getInt(0)
         a.name = cursor.getString(1)
@@ -90,8 +92,31 @@ class BankAccountManagerDBImpl implements BankAccountManager {
             Account a = new Account()
             a.name = cursor.getString(1)
             a.accountNumber = cursor.getString(2)
+
             accounts << a
         }
         accounts
     }
+
+    @Override
+    Integer getId(String name, String account) {
+       // Cursor cursor = mDatabase.rawQuery("SELECT * FROM accounts WHERE "+AccountDbSchema.AccountTable.Column.ACCOUNT_NUMBER+" = '${account}' and "+AccountDbSchema.AccountTable.Column.NAME +"= '${name}'", null)
+        Cursor cursor = mDatabase.rawQuery("SELECT * FROM accounts WHERE username = '${name}' AND account_number = '${account}'", null)
+        cursor.moveToNext()
+        println(cursor.getInt(0))
+        cursor.getInt(0)
+    }
+    @Override
+    Cursor AccountAlreadyExists(Account account){
+        String query = "SELECT * FROM accounts where account_number ='${account.accountNumber}'"
+        Cursor mCursor = mDatabase.rawQuery(query, null);
+        if (mCursor != null) {
+            mCursor.moveToFirst()
+        }
+
+        return mCursor
+
+    }
+
+
 }

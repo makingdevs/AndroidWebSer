@@ -1,5 +1,6 @@
 package com.makingdevs.service
 
+import android.database.Cursor
 import com.makingdevs.model.Account
 
 /**
@@ -13,4 +14,6 @@ interface BankAccountManager {
     Boolean deleteAccount(Account account)
     Account getAccountById(Long id)
     List<Account> retrieveAccounts()
+    Integer getId(String name, String account)
+     Cursor AccountAlreadyExists(Account account)
 }

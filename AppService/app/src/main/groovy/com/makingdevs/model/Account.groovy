@@ -4,7 +4,7 @@ package com.makingdevs.model
  */
 
 class Account {
-    Long id = 0
+    Long id = Math.random()*10
     // Drawable Photo
     String name
     String accountNumber
