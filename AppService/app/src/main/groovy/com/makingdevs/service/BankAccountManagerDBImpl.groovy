@@ -34,7 +34,8 @@ class BankAccountManagerDBImpl implements BankAccountManager {
     Integer getTotalAccounts() {
         Cursor c = mDatabase.rawQuery("SELECT * FROM accounts", null);
         c.moveToNext();
-
+        String prueba = c.getColumnName(0)
+        println(prueba)
         int query = c.getCount();
         return query;
     }
@@ -52,12 +53,22 @@ class BankAccountManagerDBImpl implements BankAccountManager {
 
     @Override
     Boolean updateAccount(Account account) {
-        return null
+       ContentValues item = new ContentValues()
+        item.put(AccountDbSchema.AccountTable.Column.NAME,account.name)
+        item.put(AccountDbSchema.AccountTable.Column.ACCOUNT_NUMBER,account.accountNumber)
+        mDatabase.update(AccountDbSchema.AccountTable.NAME,item, AccountDbSchema.AccountTable.Column.ACCOUNT_NUMBER +" = '${account.accountNumber}' or "+AccountDbSchema.AccountTable.Column.NAME +"= '${account.name}'")
     }
 
     @Override
     Boolean deleteAccount(Account account) {
-        return null
+        String name= "hola";
+       //mDatabase.delete(AccountDbSchema.AccountTable.NAME,"username = "+ 'Diego',null )>0
+        mDatabase.execSQL("DELETE FROM accounts WHERE account_number = '${account.accountNumber}'")
+        //println account.accountNumber
+        println("*********************************************1**")
+        println account.accountNumber
+        println("***********************************************")
+        return true
     }
 
     @Override

@@ -24,6 +24,7 @@ public class UserActivity extends AppCompatActivity {
     EditText Account_txt_edit
     String accountCatch
     String nameCatch
+    String _id
     int status_EditText = 0
     BankAccountManager bankAccountManager
 
@@ -67,7 +68,9 @@ public class UserActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras()
         if(bundle != null){
         Name_txt_edit.setText(bundle.getString("name"))
-        Account_txt_edit.setText(bundle.getString("account"))}
+        Account_txt_edit.setText(bundle.getString("account"))
+            _id = bundle.getInt("id")
+        }
 
         fButton_deposit.onClickListener ={
             Intent activityDeposit = new Intent(this, DepositActivity.class)
@@ -103,9 +106,13 @@ public class UserActivity extends AppCompatActivity {
                     .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                 void onClick(DialogInterface dialog, int id) {
 
-                    Account deleteAccount = new Account(accountNumber: "${Account_txt_edit.getText().toString()}")
-                    Boolean savedAccount = bankAccountManager.deleteAccount(deleteAccount)
+                    Account deleteAccount = new Account(accountNumber: "${Account_txt_edit.getText()}")
+                   /* println("***********************************************")
+                    println deleteAccount.accountNumber
+                    println("***********************************************")*/
+                    bankAccountManager.deleteAccount(deleteAccount)
                     change = 1
+
 
 
 

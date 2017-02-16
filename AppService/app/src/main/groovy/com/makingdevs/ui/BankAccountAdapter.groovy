@@ -68,6 +68,7 @@ class BankAccountAdapter extends RecyclerView.Adapter<BankAccountViewHolder> { /
                 println mAccount.id
                 //UserActivity send = new UserActivity()
                 //send.recoge(mAccount)
+                intent.putExtra("id",mAccountNumber.id)
                 intent.putExtra("name",mAccount.name)
                 intent.putExtra("account",mAccount.accountNumber)
                 mContext.startActivity(intent)
