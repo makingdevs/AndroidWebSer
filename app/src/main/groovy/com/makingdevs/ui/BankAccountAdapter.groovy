@@ -2,14 +2,13 @@ package com.makingdevs.ui
 
 import android.content.Context
 import android.content.Intent
-import android.support.v7.view.menu.MenuView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.makingdevs.model.Account
-import com.makingdevs.transaction.appservice.R
+import com.makingdevs.modulusuno.R
 import groovy.transform.CompileStatic
 
 /**

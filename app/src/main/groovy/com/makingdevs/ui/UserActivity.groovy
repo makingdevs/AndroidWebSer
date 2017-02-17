@@ -3,18 +3,18 @@ package com.makingdevs.ui
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.widget.EditText
 import android.widget.Toast
 import com.makingdevs.model.Account
+import com.makingdevs.modulusuno.R
 import com.makingdevs.service.BankAccountManager
 import com.makingdevs.service.BankAccountManagerDBImpl
-import com.makingdevs.service.BankAccountManagerImpl
-import com.makingdevs.transaction.appservice.R
 import groovy.transform.CompileStatic
-import mehdi.sakout.fancybuttons.FancyButton;
+import mehdi.sakout.fancybuttons.FancyButton
+
 @CompileStatic
 public class UserActivity extends AppCompatActivity {
     FancyButton fButton_save

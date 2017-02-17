@@ -3,22 +3,19 @@ package com.makingdevs.ui
 import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.Nullable
-
 import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager // Usa estas versiones para no tener problemas con la compatibilidad
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+
+// Usa estas versiones para no tener problemas con la compatibilidad
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import com.getbase.floatingactionbutton.FloatingActionButton
-import com.makingdevs.service.BankAccountManager
+import com.makingdevs.modulusuno.R
 import com.makingdevs.service.BankAccountManagerDBImpl
-import com.makingdevs.service.BankAccountManagerImpl
-import com.makingdevs.transaction.appservice.R
 import groovy.transform.CompileStatic
-import mehdi.sakout.fancybuttons.FancyButton
 
 /**
  * Created by makingdevs on 07/02/17.

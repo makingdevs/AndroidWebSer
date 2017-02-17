@@ -1,19 +1,17 @@
 package com.makingdevs.ui
 
-import android.content.Intent
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import com.makingdevs.modulusuno.R
 import com.makingdevs.network.PaymentClient
-import com.makingdevs.transaction.appservice.R
 import groovy.transform.CompileStatic
-import mehdi.sakout.fancybuttons.FancyButton;
-
+import mehdi.sakout.fancybuttons.FancyButton
 
 @CompileStatic
 public class DepositActivity extends AppCompatActivity {

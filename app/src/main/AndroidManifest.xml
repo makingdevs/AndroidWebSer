@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.makingdevs.transaction.appservice">
+    package="com.makingdevs.modulusuno">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
