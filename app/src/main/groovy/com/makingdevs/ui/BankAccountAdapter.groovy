@@ -63,9 +63,6 @@ class BankAccountAdapter extends RecyclerView.Adapter<BankAccountViewHolder> { /
             itemView.onClickListener = {
                 Intent intent = AccountActivity.newIntentWithContext(mContext, mAccount)
                 Log.d TAG, "$mAccount.id"
-                //intent.putExtra("id",mAccountNumber.id)
-                //intent.putExtra("name",mAccount.name)
-                //intent.putExtra("account",mAccount.accountNumber)
                 mContext.startActivity(intent)
             }
         }
