@@ -18,8 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.makingdevs.ui.UserActivity" />
-        <activity android:name="com.makingdevs.ui.NewUserActivity"></activity>
+        <activity android:name="com.makingdevs.ui.AccountActivity" />
+        <activity android:name="com.makingdevs.ui.NewAccountActivity"></activity>
         <application
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             />
