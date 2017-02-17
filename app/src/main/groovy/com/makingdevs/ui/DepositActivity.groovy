@@ -47,27 +47,17 @@ public class DepositActivity extends AppCompatActivity {
             mEditaccount.setText(bundle.getString("account"))
         }
 
+        Map<String, Closure> textChangedListener = [
+                beforeTextChanged: { CharSequence s, int start, int count, int after -> },
+                onTextChanged: { CharSequence s, int start, int before, int count ->},
+                afterTextChanged: { Editable s ->
+                    String tamanoString = String.valueOf(s.length()); //255 como maximo
+                    Integer a = 255 - tamanoString.toInteger()
+                    contador.setText(a.toString());
+                }
+        ]
 
-        mEditdescription.addTextChangedListener(new TextWatcher() {
-            @Override
-            void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            void afterTextChanged(Editable s) {
-
-                String tamanoString = String.valueOf(s.length()); //255 como maximo
-                Integer a = 255 - tamanoString.toInteger()
-                contador.setText(a.toString());
-
-            }
-        })
+        mEditdescription.addTextChangedListener(textChangedListener as TextWatcher)
 
         mFancyB.onClickListener = {
             if (mEditaccount.getText().toString().equals("") || mEditamount.getText().toString().equals("") || mEditdescription.getText().toString().equals("")) {
