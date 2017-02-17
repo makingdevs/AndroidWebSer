@@ -40,11 +40,11 @@ public class AccountActivity extends AppCompatActivity {
 
         bankAccountManager = BankAccountManagerDBImpl.getInstance(this.applicationContext)
 
-        mTextName = (EditText) findViewById(R.id.tex_editName)
-        mTextAccountNumber = (EditText) findViewById(R.id.tex_editA)
-        fButtonDeposit = (FancyButton) findViewById(R.id.button_deposit)
-        fButtonSave = (FancyButton) findViewById(R.id.button_edit)
-        fButtonDelete = (FancyButton) findViewById(R.id.button_delete)
+        mTextName = (EditText) findViewById(R.id.textNameBeneficiary)
+        mTextAccountNumber = (EditText) findViewById(R.id.textAccountBeneficiary)
+        fButtonDeposit = (FancyButton) findViewById(R.id.fButton_deposit)
+        fButtonSave = (FancyButton) findViewById(R.id.FButton_edit)
+        fButtonDelete = (FancyButton) findViewById(R.id.fButton_delete)
         mTextName.setEnabled(false)
         mTextAccountNumber.setEnabled(false)
 

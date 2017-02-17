@@ -35,13 +35,13 @@ public class DepositActivity extends AppCompatActivity {
         // Ocultar teclado virtual
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deposit);
-        mEditaccount = (EditText) findViewById(R.id.editA)
-        mEditamount = (EditText) findViewById(R.id.editAm)
-        mEditdescription = (EditText) findViewById(R.id.editD)
-        mFancyB = (FancyButton) findViewById(R.id.btn_preview)
-        mFancyC = (FancyButton) findViewById(R.id.btn_clear)
-        sMethod = (Spinner) findViewById(R.id.spinner_method)
-        contador = (TextView) findViewById(R.id.texto_contador);
+        mEditaccount = (EditText) findViewById(R.id.textNameBeneficiary)
+        mEditamount = (EditText) findViewById(R.id.textAmount)
+        mEditdescription = (EditText) findViewById(R.id.textDescription)
+        mFancyB = (FancyButton) findViewById(R.id.buttonDeposit)
+        mFancyC = (FancyButton) findViewById(R.id.buttonDelete)
+        sMethod = (Spinner) findViewById(R.id.spinnerMethod)
+        contador = (TextView) findViewById(R.id.textCont);
         Bundle bundle = getIntent().getExtras()
         if (bundle != null) {
             mEditaccount.setText(bundle.getString("account"))

@@ -21,6 +21,7 @@
 
 
     <LinearLayout
+        android:id="@+id/containerOfItem"
         android:orientation="vertical"
         android:layout_width="299dp"
         android:layout_height="99dp"
@@ -31,14 +32,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="17dp"
-            android:id="@+id/txt_Name_User"
+            android:id="@+id/textNameBeneficiary"
            />
 
         <TextView
             android:text="Cuenta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txt_Name_Account"
+            android:id="@+id/textAmount"
             android:textColor="@color/colorAccent"
             android:textSize="24dp"
             android:drawableRight="@drawable/ic_credit_card_black_24dp"

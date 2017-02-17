@@ -52,8 +52,8 @@ class BankAccountAdapter extends RecyclerView.Adapter<BankAccountViewHolder> { /
 
         BankAccountViewHolder(View itemView) {
             super(itemView)
-            mUsername = (TextView) itemView.findViewById(R.id.txt_Name_User) // Utilizando la estructura de el ItemView Activity
-            mAccountNumber = (TextView) itemView.findViewById(R.id.txt_Name_Account)
+            mUsername = (TextView) itemView.findViewById(R.id.textNameBeneficiary) // Utilizando la estructura de el ItemView Activity
+            mAccountNumber = (TextView) itemView.findViewById(R.id.textAmount)
         }
 
         void bind(Account account){
