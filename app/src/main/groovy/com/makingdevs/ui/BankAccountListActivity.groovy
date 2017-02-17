@@ -14,6 +14,9 @@ class BankAccountListActivity extends AppCompatActivity {
     void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_container)
+        getSupportActionBar().setTitle("  Beneficiarios")
+        getSupportActionBar().setIcon(R.drawable.ic_people_black_24dp)
+        getSupportActionBar().setDisplayShowHomeEnabled(true)
         FragmentManager fm =  getSupportFragmentManager()
         Fragment fragment = fm.findFragmentById(R.id.container)
         if(!fragment)

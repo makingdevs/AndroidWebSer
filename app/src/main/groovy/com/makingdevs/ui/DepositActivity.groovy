@@ -35,6 +35,9 @@ public class DepositActivity extends AppCompatActivity {
         // Ocultar teclado virtual
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deposit);
+        getSupportActionBar().setTitle("  Depósito");
+        getSupportActionBar().setIcon(R.drawable.ic_cash)
+        getSupportActionBar().setDisplayShowHomeEnabled(true)
         mEditaccount = (EditText) findViewById(R.id.textNameBeneficiary)
         mEditamount = (EditText) findViewById(R.id.textAmount)
         mEditdescription = (EditText) findViewById(R.id.textDescription)

@@ -23,6 +23,9 @@ public class NewAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bankAccountManager = BankAccountManagerDBImpl.getInstance(getApplicationContext()) // Lo cambie de lugar porque debe obtener el contexto del onCreate
+        getSupportActionBar().setTitle("  Nuevo Beneficiario");
+        getSupportActionBar().setIcon(R.drawable.ic_person)
+        getSupportActionBar().setDisplayShowHomeEnabled(true)
         setContentView(R.layout.activity_new_account);
         fButton_save = (FancyButton) findViewById(R.id.btn_save)
         mEdit_name = (EditText) findViewById(R.id.editName)

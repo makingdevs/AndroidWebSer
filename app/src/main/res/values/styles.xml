@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:icon">@mipmap/ic_launcher</item>
     </style>
     <style name="CampoTextoAzul" parent="Theme.AppCompat.Light">
         <item name="colorControlNormal">#042848</item>

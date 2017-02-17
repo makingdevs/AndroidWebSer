@@ -39,7 +39,9 @@ public class AccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_account)
 
         bankAccountManager = BankAccountManagerDBImpl.getInstance(this.applicationContext)
-
+        getSupportActionBar().setTitle("  Beneficiario")
+        getSupportActionBar().setIcon(R.drawable.ic_edit_24dp)
+        getSupportActionBar().setDisplayShowHomeEnabled(true)
         mTextName = (EditText) findViewById(R.id.textNameBeneficiary)
         mTextAccountNumber = (EditText) findViewById(R.id.textAccountBeneficiary)
         fButtonDeposit = (FancyButton) findViewById(R.id.fButton_deposit)

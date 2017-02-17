@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Depósitos-M1</string>
+    <string name="app_name">Despósitos M1</string>
     <string name="err_empty_account">Campo vacío, Introduce cuenta</string>
     <string name="err_empty_amount">Campo vacío, Introduce monto</string>
     <string name="err_empty_description">Campo vacío, Introduce descripción</string>
