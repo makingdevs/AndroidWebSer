@@ -12,7 +12,7 @@ import groovy.transform.CompileStatic
 import mehdi.sakout.fancybuttons.FancyButton
 
 @CompileStatic
-public class NewUserActivity extends AppCompatActivity {
+public class NewAccountActivity extends AppCompatActivity {
     FancyButton fButton_save
     EditText mEdit_name
     EditText mEdit_account

@@ -16,7 +16,7 @@ import groovy.transform.CompileStatic
 import mehdi.sakout.fancybuttons.FancyButton
 
 @CompileStatic
-public class UserActivity extends AppCompatActivity {
+public class AccountActivity extends AppCompatActivity {
     FancyButton fButton_save
     FancyButton fButton_deposit
     FancyButton fButton_delete
@@ -29,7 +29,7 @@ public class UserActivity extends AppCompatActivity {
     BankAccountManager bankAccountManager
 
     static newIntentWithContext(Context ctx, Account account){
-        new Intent(ctx, UserActivity)
+        new Intent(ctx, AccountActivity)
     }
     static void recoge(Account account){
 
