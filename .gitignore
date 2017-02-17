@@ -7,3 +7,4 @@ ml
 /build
 /captures
 .externalNativeBuild
+**/.DS_Store
