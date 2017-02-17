@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.makingdevs.modulusuno.R
 import com.makingdevs.network.PaymentClient
+import com.makingdevs.service.AccesNetwork
 import groovy.transform.CompileStatic
 import mehdi.sakout.fancybuttons.FancyButton
 
@@ -46,6 +47,13 @@ public class DepositActivity extends AppCompatActivity {
         sMethod = (Spinner) findViewById(R.id.spinnerMethod)
         contador = (TextView) findViewById(R.id.textCont);
         Bundle bundle = getIntent().getExtras()
+        if(AccesNetwork.isOnlineNet()){
+
+        }
+        else{
+            Toast.makeText(this, "No tienes acceso a la red", 0).show()
+        }
+
         if (bundle != null) {
             mEditaccount.setText(bundle.getString("account"))
         }

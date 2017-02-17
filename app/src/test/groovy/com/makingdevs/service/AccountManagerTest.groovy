@@ -12,7 +12,7 @@ class AccountManagerTest {
 
     BankAccountManager bankAccountManager = new BankAccountManagerImpl()
 
-    @Test
+   /* @Test
     void test0InitialAccountsInManager(){
         int totalAccounts = bankAccountManager.totalAccounts
         assert totalAccounts == 5
@@ -58,16 +58,17 @@ class AccountManagerTest {
         Boolean editAccount = bankAccountManager.updateAccount(updateAccount)
         totalAccounts = bankAccountManager.totalAccounts
         println totalAccounts
-        assert editAccount
-    }
-    /*
+
+    }*/
+
     @Test
     void test5DBAccount(){
-        Context context
-        Account newAccount = new Account(name: "Jose Juan Reyes", accountNumber: "123456789012345678")
-        AccountBaseHelper db = new AccountBaseHelper(context)
-        //db.insert(newAccount)
+
+         AccesNetwork obj = new AccesNetwork()
+        if(obj.isOnlineNet()){
+            println "No hay internet "
+        }
 
     }
-    */
+
 }
