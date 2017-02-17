@@ -9,16 +9,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.makingdevs.model.Account
 import com.makingdevs.modulusuno.R
-import groovy.transform.CompileStatic
 
 /**
  * Created by makingdevs on 07/02/17.
  */
 class BankAccountAdapter extends RecyclerView.Adapter<BankAccountViewHolder> { // Se genera sin el Holder
 
+    private static final String TAG = "BankAccountAdapter"
+
     Context mContext
     List<Account> mAccounts
-
 
     BankAccountAdapter(Context context, List<Account> accounts){
         mContext = context // Contexto donde se esta trabajando el fragmento en este caso seria para nuestro activity del item
@@ -27,10 +27,8 @@ class BankAccountAdapter extends RecyclerView.Adapter<BankAccountViewHolder> { /
 
     @Override
     BankAccountViewHolder onCreateViewHolder(ViewGroup parent, int viewType) { // este metodo se genera sin el Holder, nostros lo implementamos despues
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_user, parent ,false)
-
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_account, parent ,false)
         new BankAccountViewHolder(view)
-
     }
 
 
@@ -62,10 +60,10 @@ class BankAccountAdapter extends RecyclerView.Adapter<BankAccountViewHolder> { /
             mUsername.text = mAccount.name // Empatamos variables
             mAccountNumber.text = mAccount.accountNumber
             itemView.onClickListener = {
-                Intent intent = new Intent(mContext, UserActivity)
-                // Intent activityForUser = new Intent(mContext, UserActivity.class)
-                println mAccount.id
-                //UserActivity send = new UserActivity()
+                Intent intent = new Intent(mContext, AccountActivity)
+                // Intent activityForUser = new Intent(mContext, AccountActivity.class)
+                Log.d TAG, "$mAccount.id"
+                //AccountActivity send = new AccountActivity()
                 //send.recoge(mAccount)
                 intent.putExtra("id",mAccountNumber.id)
                 intent.putExtra("name",mAccount.name)

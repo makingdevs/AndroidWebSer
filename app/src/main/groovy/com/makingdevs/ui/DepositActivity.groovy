@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
@@ -15,18 +16,19 @@ import mehdi.sakout.fancybuttons.FancyButton
 
 @CompileStatic
 public class DepositActivity extends AppCompatActivity {
+
+    private static final String TAG = "DepositActivity"
+
     EditText mEditamount
     EditText mEditaccount
     EditText mEditdescription
     FancyButton mFancyB
     FancyButton mFancyC
-    String NumberAccount
-    String Description
+    String numberAccount
+    String description
     float amount
     TextView contador
-    Spinner SMethod
-
-
+    Spinner sMethod
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,7 @@ public class DepositActivity extends AppCompatActivity {
         mEditdescription = (EditText) findViewById(R.id.editD)
         mFancyB = (FancyButton) findViewById(R.id.btn_preview)
         mFancyC = (FancyButton) findViewById(R.id.btn_clear)
-        SMethod = (Spinner) findViewById(R.id.spinner_method)
+        sMethod = (Spinner) findViewById(R.id.spinner_method)
         contador = (TextView) findViewById(R.id.texto_contador);
         Bundle bundle = getIntent().getExtras()
         if (bundle != null) {
@@ -66,20 +68,20 @@ public class DepositActivity extends AppCompatActivity {
 
             }
         })
-        mFancyB.onClickListener = {
 
+        mFancyB.onClickListener = {
             if (mEditaccount.getText().toString().equals("") || mEditamount.getText().toString().equals("") || mEditdescription.getText().toString().equals("")) {
-                println "no deje vacio"
+                Log.d TAG, "No dejar vacío"
                 Toast.makeText(this, "No dejé Campos vacíos ", 0).show()
             } else if (mEditaccount.getText().length() != 18) {
                 Toast.makeText(this, "Ingrese 18 Digitos en Cuenta ", 0).show()
             } else {
 
-                NumberAccount = mEditaccount.getText()
-                Description = mEditdescription.getText()
+                numberAccount = mEditaccount.getText()
+                description = mEditdescription.getText()
                 amount = mEditamount.getText().toFloat()
-                String Method = SMethod.getSelectedItem().toString()
-                PaymentClient paymentClient = new PaymentClient(numberAccount:NumberAccount,amount:"${amount}",description:Description, environment:Method)
+                String Method = sMethod.getSelectedItem().toString()
+                PaymentClient paymentClient = new PaymentClient(numberAccount:numberAccount,amount:"${amount}",description:description, environment:Method)
                 paymentClient.onSuccess = {
                     Toast.makeText(this, "Transacción exitosa !!!", 1).show()
                     onBackPressed()
@@ -91,12 +93,6 @@ public class DepositActivity extends AppCompatActivity {
 
 
             }
-            /* if(mEditaccount.equals("")){ println "Vacioss"
-                 Toast.makeText (this ,"No dejé Campos vacíos ", 0).show()}
-             String Account = mEditaccount.getText().toString()
-             if(Account.equals("")){println "no debe ser vacío"}
-             else{println Account}*/
-
 
         }
 
@@ -104,7 +100,7 @@ public class DepositActivity extends AppCompatActivity {
             mEditaccount.setText("")
             mEditdescription.setText("")
             mEditamount.setText("")
-            println SMethod.getSelectedItem().toString()
+            Log.d TAG, "${sMethod.getSelectedItem()}"
 
         }
 

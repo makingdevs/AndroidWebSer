@@ -48,7 +48,7 @@ class BankAccountFragment extends Fragment {
             startActivity(activityForDeposit)
         }
         fB_new.onClickListener = {
-            Intent activityForUserEdit = new Intent(getActivity(),NewUserActivity.class) // Se usa getActivity porque estamos en un fragemento así que necesitamos indicar que queremos obtener
+            Intent activityForUserEdit = new Intent(getActivity(),NewAccountActivity.class) // Se usa getActivity porque estamos en un fragemento así que necesitamos indicar que queremos obtener
             startActivity(activityForUserEdit)
         }
         view

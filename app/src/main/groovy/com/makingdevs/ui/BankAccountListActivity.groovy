@@ -18,8 +18,6 @@ class BankAccountListActivity extends AppCompatActivity {
         Fragment fragment = fm.findFragmentById(R.id.container)
         if(!fragment)
             fm.beginTransaction().add(R.id.container, createFragment()).commit()
-
-
     }
 
     Fragment createFragment() {
