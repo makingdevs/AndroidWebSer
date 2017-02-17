@@ -7,7 +7,7 @@ import com.makingdevs.model.Account
  * Created by makingdevs on 07/02/17.
  */
 interface BankAccountManager {
-        // Metodos de la interface en consecuencia a lista que necesitamos
+    // Metodos de la interface en consecuencia a lista que necesitamos
     Integer getTotalAccounts()
     Account addToAccounts(Account account)
     Boolean updateAccount(Account account)
@@ -15,5 +15,5 @@ interface BankAccountManager {
     Account getAccountById(Long id)
     List<Account> retrieveAccounts()
     Integer getId(String name, String account)
-     Cursor AccountAlreadyExists(Account account)
+    Boolean accountAlreadyExists(Account account)
 }

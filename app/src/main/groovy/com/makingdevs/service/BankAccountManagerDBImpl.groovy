@@ -32,12 +32,9 @@ class BankAccountManagerDBImpl implements BankAccountManager {
 
     @Override
     Integer getTotalAccounts() {
-        Cursor c = mDatabase.rawQuery("SELECT * FROM accounts", null);
-        c.moveToNext();
-        String prueba = c.getColumnName(0)
-        println(prueba)
-        int query = c.getCount();
-        return query;
+        Cursor c = mDatabase.rawQuery("SELECT * FROM accounts", null)
+        c.moveToNext() // Revisar
+        c.getCount()
     }
 
     @Override
@@ -47,30 +44,20 @@ class BankAccountManagerDBImpl implements BankAccountManager {
         item.put(AccountDbSchema.AccountTable.Column.NAME,account.name)
         item.put(AccountDbSchema.AccountTable.Column.ACCOUNT_NUMBER,account.accountNumber)
         db.insert(AccountDbSchema.AccountTable.NAME,null,item)
-
-
         account
     }
 
     @Override
     Boolean updateAccount(Account account) {
-       ContentValues item = new ContentValues()
+        ContentValues item = new ContentValues()
         item.put(AccountDbSchema.AccountTable.Column.NAME,account.name)
         item.put(AccountDbSchema.AccountTable.Column.ACCOUNT_NUMBER,account.accountNumber)
-        mDatabase.update(AccountDbSchema.AccountTable.NAME,item,"_id = ${account.id}")
-        //mDatabase.update(AccountDbSchema.AccountTable.NAME,item, AccountDbSchema.AccountTable.Column.ACCOUNT_NUMBER +" = '${account.accountNumber}' or "+AccountDbSchema.AccountTable.Column.NAME +"= '${account.name}'")
+        mDatabase.update(AccountDbSchema.AccountTable.NAME,item,"_id = ${account.id}") > 0
     }
 
     @Override
     Boolean deleteAccount(Account account) {
-        String name= "hola";
-       //mDatabase.delete(AccountDbSchema.AccountTable.NAME,"username = "+ 'Diego',null )>0
-        mDatabase.execSQL("DELETE FROM accounts WHERE account_number = '${account.accountNumber}'")
-        //println account.accountNumber
-        println("*********************************************1**")
-        println account.accountNumber
-        println("***********************************************")
-        return true
+        mDatabase.delete(AccountDbSchema.AccountTable.NAME,"account_number = '${account.accountNumber}'",null ) > 0
     }
 
     @Override
@@ -100,23 +87,20 @@ class BankAccountManagerDBImpl implements BankAccountManager {
 
     @Override
     Integer getId(String name, String account) {
-       // Cursor cursor = mDatabase.rawQuery("SELECT * FROM accounts WHERE "+AccountDbSchema.AccountTable.Column.ACCOUNT_NUMBER+" = '${account}' and "+AccountDbSchema.AccountTable.Column.NAME +"= '${name}'", null)
         Cursor cursor = mDatabase.rawQuery("SELECT * FROM accounts WHERE username = '${name}' AND account_number = '${account}'", null)
         cursor.moveToNext()
         println(cursor.getInt(0))
         cursor.getInt(0)
     }
+
     @Override
-    Cursor AccountAlreadyExists(Account account){
+    Boolean accountAlreadyExists(Account account) {
         String query = "SELECT * FROM accounts where account_number ='${account.accountNumber}'"
         Cursor mCursor = mDatabase.rawQuery(query, null);
-        if (mCursor != null) {
+        if (mCursor) {
             mCursor.moveToFirst()
         }
-
-        return mCursor
-
+        mCursor.count as Boolean
     }
-
 
 }
