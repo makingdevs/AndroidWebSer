@@ -17,31 +17,28 @@ import mehdi.sakout.fancybuttons.FancyButton
 
 @CompileStatic
 public class AccountActivity extends AppCompatActivity {
-    FancyButton fButton_save
-    FancyButton fButton_deposit
-    FancyButton fButton_delete
-    EditText Name_txt_edit
-    EditText Account_txt_edit
-    String accountCatch
-    String nameCatch
-    int _id
+
+    FancyButton fButtonSave
+    FancyButton fButtonDeposit
+    FancyButton fButtonDelete
+    EditText mTextName
+    EditText mTextAccountNumber
+    static Account account
+    Long _id
     int status_EditText = 0
     BankAccountManager bankAccountManager
 
     static newIntentWithContext(Context ctx, Account account){
+        this.account = account
         new Intent(ctx, AccountActivity)
     }
-    static void recoge(Account account){
 
-       // accountCatch =account.accountNumber.toString()
-         //nameCatch = account.name.toString()
-    }
     private void alert() {
         AlertDialog alert = new AlertDialog.Builder(this).create()
         alert.setTitle("Estás Seguro")
         alert.setMessage("Realmente desea borrar")
         alert.setButton("Si") { DialogInterface dialog, int which ->
-            Account deleteAccount = new Account(accountNumber: "${Account_txt_edit.getText().toString()}")
+            Account deleteAccount = new Account(accountNumber: "${mTextAccountNumber.getText().toString()}")
             Boolean savedAccount = bankAccountManager.deleteAccount(deleteAccount)
             Intent activityForFragment = new Intent(this, BankAccountListActivity.class)
             startActivity(activityForFragment)
@@ -53,56 +50,52 @@ public class AccountActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account);
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_account)
 
         bankAccountManager = BankAccountManagerDBImpl.getInstance(this.applicationContext)
 
-        Name_txt_edit = (EditText) findViewById(R.id.tex_editName)
-        Account_txt_edit = (EditText) findViewById(R.id.tex_editA)
-        fButton_deposit = (FancyButton) findViewById(R.id.button_deposit)
-        fButton_save = (FancyButton) findViewById(R.id.button_edit)
-        fButton_delete = (FancyButton) findViewById(R.id.button_delete)
-        Name_txt_edit.setEnabled(false)
-        Account_txt_edit.setEnabled(false)
-        Bundle bundle = getIntent().getExtras()
-        if(bundle != null){
-        Name_txt_edit.setText(bundle.getString("name"))
-        Account_txt_edit.setText(bundle.getString("account"))
-            _id = bundle.getInt("id")
+        mTextName = (EditText) findViewById(R.id.tex_editName)
+        mTextAccountNumber = (EditText) findViewById(R.id.tex_editA)
+        fButtonDeposit = (FancyButton) findViewById(R.id.button_deposit)
+        fButtonSave = (FancyButton) findViewById(R.id.button_edit)
+        fButtonDelete = (FancyButton) findViewById(R.id.button_delete)
+        mTextName.setEnabled(false)
+        mTextAccountNumber.setEnabled(false)
 
+        mTextName.text = account.name
+        mTextAccountNumber.text = account.accountNumber
+        _id = account.id
 
-        }
-
-        fButton_deposit.onClickListener ={
+        fButtonDeposit.onClickListener ={
             Intent activityDeposit = new Intent(this, DepositActivity.class)
-            activityDeposit.putExtra("account", Account_txt_edit.getText().toString())
+            activityDeposit.putExtra("account", mTextAccountNumber.getText().toString())
             startActivity(activityDeposit)
         }
-        fButton_save.onClickListener ={
-            if(status_EditText==0){
-                Name_txt_edit.setEnabled(true)
-                Account_txt_edit.setEnabled(true)
-                fButton_save.setText("Guardar  ")
+        fButtonSave.onClickListener = {
+            if(status_EditText == 0){
+                mTextName.setEnabled(true)
+                mTextAccountNumber.setEnabled(true)
+                fButtonSave.setText("Guardar  ")
                 status_EditText = 1
-                _id = bankAccountManager.getId(Name_txt_edit.getText().toString(),Account_txt_edit.text.toString())
+                _id = account.id
             }
             else{
-                if(Account_txt_edit.getText().length() !=18 ){
+                if(mTextAccountNumber.getText().length() !=18 ){
                     Toast.makeText(this, "Deben ser 18 digitos ", 0).show()
                 }
                 else{
-                    Account updateAccount = new Account(name: "${Name_txt_edit.getText().toString()}", accountNumber: "${Account_txt_edit.getText().toString()}")
+                    Account updateAccount = new Account(name: "${mTextName.getText().toString()}", accountNumber: "${mTextAccountNumber.getText().toString()}")
                     updateAccount.id = _id
                     bankAccountManager.updateAccount(updateAccount)
-                    Name_txt_edit.setEnabled(false)
-                    Account_txt_edit.setEnabled(false)
-                    fButton_save.setText("Editar       ")
+                    mTextName.setEnabled(false)
+                    mTextAccountNumber.setEnabled(false)
+                    fButtonSave.setText("Editar       ")
                     status_EditText = 0}
                 }
 
         }
-        fButton_delete.onClickListener = {
+        fButtonDelete.onClickListener = {
             Intent activityForFragment = new Intent(this,BankAccountListActivity.class)
             int change = 0
             AlertDialog.Builder clearConfirmDialog = new AlertDialog.Builder(this)
@@ -110,7 +103,7 @@ public class AccountActivity extends AppCompatActivity {
                     .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                 void onClick(DialogInterface dialog, int id) {
 
-                    Account deleteAccount = new Account(accountNumber: "${Account_txt_edit.getText()}")
+                    Account deleteAccount = new Account(accountNumber: "${mTextAccountNumber.getText()}")
                    /* println("***********************************************")
                     println deleteAccount.accountNumber
                     println("***********************************************")*/

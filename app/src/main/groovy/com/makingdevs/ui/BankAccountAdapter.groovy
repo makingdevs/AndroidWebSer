@@ -61,14 +61,11 @@ class BankAccountAdapter extends RecyclerView.Adapter<BankAccountViewHolder> { /
             mUsername.text = mAccount.name // Empatamos variables
             mAccountNumber.text = mAccount.accountNumber
             itemView.onClickListener = {
-                Intent intent = new Intent(mContext, AccountActivity)
-                // Intent activityForUser = new Intent(mContext, AccountActivity.class)
+                Intent intent = AccountActivity.newIntentWithContext(mContext, mAccount)
                 Log.d TAG, "$mAccount.id"
-                //AccountActivity send = new AccountActivity()
-                //send.recoge(mAccount)
-                intent.putExtra("id",mAccountNumber.id)
-                intent.putExtra("name",mAccount.name)
-                intent.putExtra("account",mAccount.accountNumber)
+                //intent.putExtra("id",mAccountNumber.id)
+                //intent.putExtra("name",mAccount.name)
+                //intent.putExtra("account",mAccount.accountNumber)
                 mContext.startActivity(intent)
             }
         }
