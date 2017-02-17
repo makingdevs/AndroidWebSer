@@ -84,8 +84,7 @@ public class DepositActivity extends AppCompatActivity {
                 PaymentClient paymentClient = new PaymentClient(numberAccount:NumberAccount,amount:"${amount}",description:Description, environment:Method)
                 paymentClient.onSuccess = {
                     Toast.makeText(this, "Transacción exitosa !!!", 1).show()
-                    Intent activityList = new Intent(this, BankAccountListActivity.class)
-                    startActivity(activityList)
+                    onBackPressed()
                 }
                 paymentClient.onError = {
                     Toast.makeText(this, "Paso algo inesperado", 0).show()

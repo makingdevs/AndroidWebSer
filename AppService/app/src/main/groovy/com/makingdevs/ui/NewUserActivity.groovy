@@ -48,12 +48,11 @@ public class NewUserActivity extends AppCompatActivity {
                 }
                 else {
                     bankAccountManager.addToAccounts(newAccount)
+                    onBackPressed();
                 }
 
-                println(newAccount.id)
-                fButton_save.setBorderColor(Color.CYAN)
-                Intent activityForFragment = new Intent(this, BankAccountListActivity.class)
-                startActivity(activityForFragment)
+
+
             }
 
 
