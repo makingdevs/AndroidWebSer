@@ -34,15 +34,10 @@ class BankAccountManagerImpl implements BankAccountManager {
     @Override
     Boolean deleteAccount(Account account) {
         boolean found = false
-        println account.accountNumber
-
         accounts = accounts - accounts.find(){if(it.accountNumber == account.accountNumber){
             found = true
         }
         }
-        println("***********************************************")
-        println account.accountNumber
-        println("***********************************************")
         return found
 
     }
@@ -56,31 +51,19 @@ class BankAccountManagerImpl implements BankAccountManager {
                 it.accountNumber = account.accountNumber
             }
         }
-            println accounts.name
-            println(accounts.accountNumber)
-            println "Actualiza"
         return true
         }
         println accounts.name
-        println "No entre"
         return false
 
     }
 
-    @Override
-    Account getAccountById(Long id) {
-        return null
-    }
 
     @Override
     List<Account> retrieveAccounts() {
         accounts
     }
 
-    @Override
-   Integer getId(String name, String account) {
-        return null
-    }
 
     @Override
     Boolean accountAlreadyExists(Account account) {

@@ -39,7 +39,7 @@
                 android:inputType="text"
                 android:id="@+id/tex_editName"
                 android:ems="10"
-                android:hint="Nombre de usuario"
+                android:hint="Nombre de benfeciario"
                 android:theme="@style/CampoTextoAzul"
                 android:drawableRight="@drawable/ic_edit_24dp"
                 />

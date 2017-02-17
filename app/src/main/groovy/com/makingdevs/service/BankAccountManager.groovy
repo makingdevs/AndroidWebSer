@@ -12,8 +12,6 @@ interface BankAccountManager {
     Account addToAccounts(Account account)
     Boolean updateAccount(Account account)
     Boolean deleteAccount(Account account)
-    Account getAccountById(Long id)
     List<Account> retrieveAccounts()
-    Integer getId(String name, String account)
     Boolean accountAlreadyExists(Account account)
 }

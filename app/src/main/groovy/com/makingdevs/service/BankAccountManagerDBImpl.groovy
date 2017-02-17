@@ -61,17 +61,6 @@ class BankAccountManagerDBImpl implements BankAccountManager {
     }
 
     @Override
-    Account getAccountById(Long id) {
-        Account a = new Account()
-        Cursor cursor = mDatabase.rawQuery("SELECT * FROM accounts WHERE _id = ${id}", null)
-        cursor.moveToNext()
-        a.id = cursor.getInt(0)
-        a.name = cursor.getString(1)
-        a.accountNumber = cursor.getString(2)
-        a
-    }
-
-    @Override
     List<Account> retrieveAccounts() {
         List<Account> accounts = []
         Cursor cursor = mDatabase.rawQuery("SELECT * FROM accounts", null)
@@ -85,13 +74,6 @@ class BankAccountManagerDBImpl implements BankAccountManager {
         accounts
     }
 
-    @Override
-    Integer getId(String name, String account) {
-        Cursor cursor = mDatabase.rawQuery("SELECT * FROM accounts WHERE username = '${name}' AND account_number = '${account}'", null)
-        cursor.moveToNext()
-        println(cursor.getInt(0))
-        cursor.getInt(0)
-    }
 
     @Override
     Boolean accountAlreadyExists(Account account) {
