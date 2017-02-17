@@ -83,7 +83,8 @@ class BankAccountManagerImpl implements BankAccountManager {
     }
 
     @Override
-    Cursor AccountAlreadyExists(Account account) {
+    Boolean accountAlreadyExists(Account account) {
         return null
     }
+
 }

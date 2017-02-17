@@ -1,6 +1,5 @@
 package com.makingdevs.ui
 
-import android.database.Cursor
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.EditText
@@ -38,8 +37,7 @@ public class NewUserActivity extends AppCompatActivity {
             }
             else{
                 Account newAccount = new Account(name: "${mEdit_name.text.toString()}", accountNumber: "${mEdit_account.text.toString()}")
-                Cursor c = bankAccountManager.AccountAlreadyExists(newAccount)
-                if(c.count !=0){
+                if(bankAccountManager.accountAlreadyExists(newAccount)){
                     Toast.makeText(this, "La cuenta ya existe",1).show()
 
                 }
