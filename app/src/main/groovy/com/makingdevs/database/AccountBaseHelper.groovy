@@ -24,8 +24,8 @@ class AccountBaseHelper extends SQLiteOpenHelper {
     void onCreate(SQLiteDatabase db) {
         db.execSQL("""\
             create table ${AccountTable.NAME}( _id integer primary key autoincrement,
-            ${AccountTable.Column.NAME},
-            ${AccountTable.Column.ACCOUNT_NUMBER} )
+            ${AccountTable.Column.NAME} varchar(255),
+            ${AccountTable.Column.ACCOUNT_NUMBER} varchar(20) )
         """)
 
     }
