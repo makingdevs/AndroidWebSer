@@ -2,7 +2,6 @@ package com.makingdevs.network
 
 import android.util.Log
 import groovy.json.JsonSlurper
-import groovy.transform.CompileStatic
 import groovy.transform.TypeChecked;
 
 /**
@@ -25,7 +24,7 @@ class PaymentClient {
     String doPayment(){
 
         Fluent.async {
-            makeconnection()
+            makeConnection()
         } then { Map response ->
             Log.d(TAG, "RESPONSE: ${response}")
             switch (response["responseCode"]){
@@ -40,7 +39,8 @@ class PaymentClient {
 
         true
     }
-    private Map makeconnection(){
+
+    private Map makeConnection(){
         HttpURLConnection connection = API_URL.replace(":environment",environment).toURL().openConnection() as HttpURLConnection
         connection.doOutput = true
         connection.outputStream.withWriter { Writer writter -> writter << "notification=${createXmlDocumentForPayment()}" }
