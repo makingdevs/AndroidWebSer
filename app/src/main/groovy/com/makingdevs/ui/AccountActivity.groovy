@@ -92,35 +92,23 @@ public class AccountActivity extends AppCompatActivity {
                     mTextAccountNumber.setEnabled(false)
                     fButtonSave.setText("Editar       ")
                     status_EditText = 0}
-                }
+            }
 
         }
         fButtonDelete.onClickListener = {
-            Intent activityForFragment = new Intent(this,BankAccountListActivity.class)
+            Intent activityForFragment = new Intent(this,BankAccountListActivity)
             int change = 0
+
             AlertDialog.Builder clearConfirmDialog = new AlertDialog.Builder(this)
             clearConfirmDialog.setMessage("Estas seguro de querer boorrar el usuario").setCancelable(false)
-                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                void onClick(DialogInterface dialog, int id) {
-
-                    Account deleteAccount = new Account(accountNumber: "${mTextAccountNumber.getText()}")
-                   /* println("***********************************************")
-                    println deleteAccount.accountNumber
-                    println("***********************************************")*/
-                    bankAccountManager.deleteAccount(deleteAccount)
-                    change = 1
-
-
-
-
-                }
-            })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                void onClick(DialogInterface dialog, int id) {
-                    //  Action for 'NO' Button
-                    dialog.cancel();
-                }
-            })
+                    .setPositiveButton("Si", { DialogInterface dialog, int id ->
+                Account deleteAccount = new Account(accountNumber: "${mTextAccountNumber.getText()}")
+                bankAccountManager.deleteAccount(deleteAccount)
+                change = 1
+            } as DialogInterface.OnClickListener)
+                    .setNegativeButton("No", { DialogInterface dialog, int id ->
+                dialog.cancel()
+            } as DialogInterface.OnClickListener)
             AlertDialog alert = clearConfirmDialog.create()
             alert.setIcon(R.drawable.ic_error_outline_black_24dp);
             alert.setTitle("Alerta")
@@ -128,12 +116,6 @@ public class AccountActivity extends AppCompatActivity {
             alert.onDismissListener={
                 startActivity(activityForFragment)
             }
-
-
-
         }
-
-
     }
-
 }
