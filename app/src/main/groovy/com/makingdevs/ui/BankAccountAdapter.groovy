@@ -67,6 +67,7 @@ class BankAccountAdapter extends RecyclerView.Adapter<BankAccountViewHolder> { /
             }
         }
 
+
     }
 }
 

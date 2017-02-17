@@ -33,21 +33,6 @@ public class AccountActivity extends AppCompatActivity {
         new Intent(ctx, AccountActivity)
     }
 
-    private void alert() {
-        AlertDialog alert = new AlertDialog.Builder(this).create()
-        alert.setTitle("Estás Seguro")
-        alert.setMessage("Realmente desea borrar")
-        alert.setButton("Si") { DialogInterface dialog, int which ->
-            Account deleteAccount = new Account(accountNumber: "${mTextAccountNumber.getText().toString()}")
-            Boolean savedAccount = bankAccountManager.deleteAccount(deleteAccount)
-            Intent activityForFragment = new Intent(this, BankAccountListActivity.class)
-            startActivity(activityForFragment)
-        } as DialogInterface.OnClickListener
-        alert.setButton("No"){DialogInterface dialog, int which ->
-
-        } as DialogInterface.OnClickListener
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState)
@@ -96,9 +81,7 @@ public class AccountActivity extends AppCompatActivity {
 
         }
         fButtonDelete.onClickListener = {
-            Intent activityForFragment = new Intent(this,BankAccountListActivity)
             int change = 0
-
             AlertDialog.Builder clearConfirmDialog = new AlertDialog.Builder(this)
             clearConfirmDialog.setMessage("Estas seguro de querer boorrar el usuario").setCancelable(false)
                     .setPositiveButton("Si", { DialogInterface dialog, int id ->
@@ -114,7 +97,7 @@ public class AccountActivity extends AppCompatActivity {
             alert.setTitle("Alerta")
             alert.show()
             alert.onDismissListener={
-                startActivity(activityForFragment)
+                onBackPressed();
             }
         }
     }

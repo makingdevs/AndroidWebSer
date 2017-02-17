@@ -21,7 +21,7 @@ class BankAccountListActivity extends AppCompatActivity {
     }
 
     Fragment createFragment() {
-         new BankAccountFragment()
+         new BankAccountFragment() // Se crea el fragmento en base al contenedor
     }
 
 }
