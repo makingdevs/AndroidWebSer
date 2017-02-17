@@ -77,9 +77,9 @@ class BankAccountManagerDBImpl implements BankAccountManager {
         Cursor cursor = mDatabase.rawQuery("SELECT * FROM accounts", null)
         while(cursor.moveToNext()){
             Account a = new Account()
+            a.id = cursor.getInt(0)
             a.name = cursor.getString(1)
             a.accountNumber = cursor.getString(2)
-
             accounts << a
         }
         accounts
