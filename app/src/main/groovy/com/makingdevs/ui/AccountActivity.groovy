@@ -40,7 +40,7 @@ public class AccountActivity extends AppCompatActivity {
 
         bankAccountManager = BankAccountManagerDBImpl.getInstance(this.applicationContext)
         getSupportActionBar().setTitle("  Beneficiario")
-        getSupportActionBar().setIcon(R.drawable.ic_edit_24dp)
+        getSupportActionBar().setIcon(R.drawable.ic_edit_white_24dp)
         getSupportActionBar().setDisplayShowHomeEnabled(true)
         mTextName = (EditText) findViewById(R.id.textNameBeneficiary)
         mTextAccountNumber = (EditText) findViewById(R.id.textAccountBeneficiary)
@@ -74,11 +74,21 @@ public class AccountActivity extends AppCompatActivity {
                 else{
                     Account updateAccount = new Account(name: "${mTextName.getText().toString()}", accountNumber: "${mTextAccountNumber.getText().toString()}")
                     updateAccount.id = _id
-                    bankAccountManager.updateAccount(updateAccount)
+                    if(bankAccountManager.accountAlreadyExists(updateAccount)){
+                        Toast.makeText(this, "La cuenta ya existe",1).show()
+
+                        }
+                    else{
+                        bankAccountManager.updateAccount(updateAccount)
+                    }
                     mTextName.setEnabled(false)
                     mTextAccountNumber.setEnabled(false)
                     fButtonSave.setText("Editar       ")
-                    status_EditText = 0}
+                    status_EditText = 0
+
+                    }
+
+
             }
 
         }
