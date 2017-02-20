@@ -1,6 +1,8 @@
 package com.makingdevs.ui
 
+import android.app.ProgressDialog
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
@@ -15,11 +17,11 @@ import com.makingdevs.service.AccesNetwork
 import groovy.transform.CompileStatic
 import mehdi.sakout.fancybuttons.FancyButton
 
-@CompileStatic
+
 public class DepositActivity extends AppCompatActivity {
 
     private static final String TAG = "DepositActivity"
-
+    ProgressDialog progressDialog = null;
     EditText mEditamount
     EditText mEditaccount
     EditText mEditdescription
@@ -30,7 +32,7 @@ public class DepositActivity extends AppCompatActivity {
     float amount
     TextView contador
     Spinner sMethod
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Ocultar teclado virtual
@@ -82,13 +84,26 @@ public class DepositActivity extends AppCompatActivity {
                 description = mEditdescription.getText()
                 amount = mEditamount.getText().toFloat()
                 String Method = sMethod.getSelectedItem().toString()
+                progressDialog= new ProgressDialog(this)
+                progressDialog.setMessage("Enviando pago ...")
+                progressDialog.setCancelable(false)
+                progressDialog.show()
+
+
                 PaymentClient paymentClient = new PaymentClient(numberAccount:numberAccount,amount:"${amount}",description:description, environment:Method)
                 paymentClient.onSuccess = {
                     Toast.makeText(this, "Transacción exitosa !!!", 1).show()
+
+
+                    progressDialog.setMessage("Transacción exitosa  ...")
                     onBackPressed()
+
                 }
                 paymentClient.onError = {
+                    progressDialog.dismiss()
                     Toast.makeText(this, "Paso algo inesperado", 0).show()
+                    progressDialog.setMessage("Paso algo inesperado")
+                    onBackPressed()
                 }
                 paymentClient.doPayment()
 
@@ -98,6 +113,10 @@ public class DepositActivity extends AppCompatActivity {
         }
 
         mFancyC.onClickListener = {
+            progressDialog= new ProgressDialog(this)
+            progressDialog.show()
+            progressDialog.setContentView(R.layout.activity_progress_bar)
+
             mEditaccount.setText("")
             mEditdescription.setText("")
             mEditamount.setText("")
@@ -107,4 +126,5 @@ public class DepositActivity extends AppCompatActivity {
 
 
     }
+
 }

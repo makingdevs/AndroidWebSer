@@ -19,11 +19,14 @@
             </intent-filter>
         </activity>
         <activity android:name="com.makingdevs.ui.AccountActivity" />
-        <activity android:name="com.makingdevs.ui.NewAccountActivity"></activity>
-        <application
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            />
-    </application>
+        <activity android:name="com.makingdevs.ui.NewAccountActivity" />
 
+        <application android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity android:name="com.makingdevs.ui.ProgressBar">
+
+
+        </activity>
+    </application>
 
 </manifest>
