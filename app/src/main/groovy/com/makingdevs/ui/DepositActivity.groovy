@@ -1,6 +1,7 @@
 package com.makingdevs.ui
 
 import android.app.ProgressDialog
+import android.graphics.LightingColorFilter
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
@@ -96,6 +97,7 @@ public class DepositActivity extends AppCompatActivity {
 
 
                     progressDialog.setMessage("Transacción exitosa  ...")
+                   
                     onBackPressed()
 
                 }
