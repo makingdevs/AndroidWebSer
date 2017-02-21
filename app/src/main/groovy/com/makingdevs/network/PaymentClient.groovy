@@ -20,24 +20,24 @@ class PaymentClient {
     String environment
     Closure onSuccess
     Closure onError
+    String name
 
     String doPayment(){
-
         Fluent.async {
             makeConnection()
         } then { Map response ->
             Log.d(TAG, "RESPONSE: ${response}")
+            this.name = response.getAt("response")
             switch (response["responseCode"]){
                 case 201:
-                    if(onSuccess) onSuccess()
+                    onSuccess(name)
                     break
                 default:
-                    if(onError) onError()
+                    onError()
                     break
             }
         }
-
-        true
+       true
     }
 
     private Map makeConnection(){
@@ -51,6 +51,7 @@ class PaymentClient {
 
     @TypeChecked
     String createXmlDocumentForPayment() {
+        Integer clave = Math.abs(new Random().nextInt() % 600 + 1)
         """\
         <Abono>
             <Clave>1101</Clave>

@@ -90,21 +90,27 @@ public class DepositActivity extends AppCompatActivity {
                 progressDialog.setCancelable(false)
                 progressDialog.show()
 
-
                 PaymentClient paymentClient = new PaymentClient(numberAccount:numberAccount,amount:"${amount}",description:description, environment:Method)
-                paymentClient.onSuccess = {
-                    Toast.makeText(this, "Transacción exitosa !!!", 1).show()
+                paymentClient.onSuccess = { name  ->
+                    if (name.contains("ACEPTADO")){
+                        Toast.makeText(this, "Transacción Aceptada !!!", 1).show()
+                        progressDialog.setMessage("Transacción exitosa  ...")
+                        progressDialog.dismiss()
+                        onBackPressed()
 
-
-                    progressDialog.setMessage("Transacción exitosa  ...")
-                   
-                    onBackPressed()
+                    }
+                    else {
+                        Toast.makeText(this, "Transacción Rechazada !!!", 1).show()
+                        progressDialog.setMessage("Transacción exitosa  ...")
+                        progressDialog.dismiss()
+                        onBackPressed()
+                    }
 
                 }
                 paymentClient.onError = {
-                    progressDialog.dismiss()
                     Toast.makeText(this, "Paso algo inesperado", 0).show()
                     progressDialog.setMessage("Paso algo inesperado")
+                    progressDialog.dismiss()
                     onBackPressed()
                 }
                 paymentClient.doPayment()
