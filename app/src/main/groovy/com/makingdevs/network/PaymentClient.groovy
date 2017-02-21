@@ -44,6 +44,7 @@ class PaymentClient {
         HttpURLConnection connection = API_URL.replace(":environment",environment).toURL().openConnection() as HttpURLConnection
         connection.doOutput = true
         connection.outputStream.withWriter { Writer writter -> writter << "notification=${createXmlDocumentForPayment()}" }
+        println createXmlDocumentForPayment()
         String responseText = connection.inputStream.withReader { Reader reader -> reader.text }
         String response = new JsonSlurper().parseText(responseText)
         [response:response, method: connection.requestMethod,responseCode:connection.responseCode]
@@ -53,22 +54,22 @@ class PaymentClient {
     String createXmlDocumentForPayment() {
         Integer clave = Math.abs(new Random().nextInt() % 600 + 1)
         """\
-        <Abono>
-            <Clave>1101</Clave>
-            <FechaOperacion>${new Date().format("yyyyMMdd")}</FechaOperacion>
-            <InstitucionOrdenante clave="846"/>
-            <InstitucionBeneficiaria clave="90646"/>
-            <ClaveRastreo>GEM801</ClaveRastreo>
-            <Monto>${amount}</Monto>
-            <NombreBeneficiario>Techminds</NombreBeneficiario>
-            <TipoCuentaBeneficiario clave="40"/>
-            <CuentaBeneficiario>${numberAccount}</CuentaBeneficiario>
-            <RfcCurpBeneficiario>RFC121212ABC</RfcCurpBeneficiario>
-            <ConceptoPago>${description}</ConceptoPago>
-            <ReferenciaNumerica>27122016</ReferenciaNumerica>
-            <Empresa>STP</Empresa>
-        </Abono>
-        """.trim()
+<Abono>
+<Clave>22014</Clave>
+<FechaOperacion>${new Date().format("yyyyMMdd")}</FechaOperacion>
+<InstitucionOrdenante clave="846"/>
+<InstitucionBeneficiaria clave="90646"/>
+<ClaveRastreo>GEM804</ClaveRastreo>
+<Monto>${amount}</Monto>
+<NombreBeneficiario>Techminds</NombreBeneficiario>
+<TipoCuentaBeneficiario clave="40"/>
+<CuentaBeneficiario>${numberAccount}</CuentaBeneficiario>
+<RfcCurpBeneficiario>RFC121212ABC</RfcCurpBeneficiario>
+<ConceptoPago>${description}</ConceptoPago>
+<ReferenciaNumerica>27122016</ReferenciaNumerica>
+<Empresa>STP</Empresa>
+</Abono>
+"""
     }
 
 

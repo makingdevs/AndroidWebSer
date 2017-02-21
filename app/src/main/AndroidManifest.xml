@@ -23,10 +23,6 @@
 
         <application android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
-        <activity android:name="com.makingdevs.ui.ProgressBar">
-
-
-        </activity>
     </application>
 
 </manifest>

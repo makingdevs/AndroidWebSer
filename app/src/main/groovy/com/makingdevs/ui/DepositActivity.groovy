@@ -95,17 +95,17 @@ public class DepositActivity extends AppCompatActivity {
                     if (name.contains("ACEPTADO")){
                         Toast.makeText(this, "Transacción Aceptada !!!", 1).show()
                         progressDialog.setMessage("Transacción exitosa  ...")
-                        progressDialog.dismiss()
-                        onBackPressed()
-
                     }
-                    else {
-                        Toast.makeText(this, "Transacción Rechazada !!!", 1).show()
-                        progressDialog.setMessage("Transacción exitosa  ...")
-                        progressDialog.dismiss()
-                        onBackPressed()
+                    else if(name.contains("APLICADO")){
+                        Toast.makeText(this, "Transacción Aplicada!!!", 1).show()
+                        progressDialog.setMessage("Transacción Aplicada  ...")
                     }
-
+                    else{
+                        Toast.makeText(this, "Transacción Aplicada!!!", 1).show()
+                        progressDialog.setMessage("Transacción Aplicada  ...")
+                    }
+                    progressDialog.dismiss()
+                    onBackPressed()
                 }
                 paymentClient.onError = {
                     Toast.makeText(this, "Paso algo inesperado", 0).show()
