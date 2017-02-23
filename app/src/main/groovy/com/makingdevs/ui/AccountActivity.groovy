@@ -75,8 +75,14 @@ public class AccountActivity extends AppCompatActivity {
                     Account updateAccount = new Account(name: "${mTextName.getText().toString()}", accountNumber: "${mTextAccountNumber.getText().toString()}")
                     updateAccount.id = _id
                     if(bankAccountManager.accountAlreadyExists(updateAccount)){
-                        Toast.makeText(this, "La cuenta ya existe",1).show()
-
+                        if(mTextName.getText().toString()!= account.name){
+                            Account updateAccountName = new Account(name: "${mTextName.getText().toString()}", accountNumber: "${account.accountNumber}")
+                            updateAccountName.id = _id
+                            bankAccountManager.updateAccount(updateAccountName)
+                        }
+                        else {
+                            Toast.makeText(this, "La cuenta ya existe",1).show()
+                        }
                         }
                     else{
                         bankAccountManager.updateAccount(updateAccount)
@@ -87,7 +93,6 @@ public class AccountActivity extends AppCompatActivity {
                     status_EditText = 0
 
                     }
-
 
             }
 
