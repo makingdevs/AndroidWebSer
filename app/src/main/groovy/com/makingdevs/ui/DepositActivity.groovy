@@ -119,12 +119,7 @@ public class DepositActivity extends AppCompatActivity {
             }
 
         }
-
         mFancyC.onClickListener = {
-            progressDialog= new ProgressDialog(this)
-            progressDialog.show()
-            progressDialog.setContentView(R.layout.activity_progress_bar)
-
             mEditaccount.setText("")
             mEditdescription.setText("")
             mEditamount.setText("")
