@@ -55,7 +55,7 @@ class PaymentClient {
         Integer clave = Math.abs(new Random().nextInt() % 600 + 1)
         """\
 <Abono>
-<Clave>22014</Clave>
+<Clave>${clave}</Clave>
 <FechaOperacion>${new Date().format("yyyyMMdd")}</FechaOperacion>
 <InstitucionOrdenante clave="846"/>
 <InstitucionBeneficiaria clave="90646"/>
