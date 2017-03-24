@@ -110,7 +110,7 @@ public class DepositActivity extends AppCompatActivity {
                 paymentClient.onError = {
                     Toast.makeText(this, "Paso algo inesperado", 0).show()
                     progressDialog.setMessage("Paso algo inesperado")
-                    progressDialog.dismiss()
+                   progressDialog.dismiss()
                     onBackPressed()
                 }
                 paymentClient.doPayment()
